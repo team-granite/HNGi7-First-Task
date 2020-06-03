@@ -13,5 +13,5 @@ let intern_pidoxy = {
 
 // giveOutput();
 
-console.log(`Hello World, this is ${intern_pidoxy.fullName} with HNGi7 ID ${intern_pidoxy.ID} using ${intern_pidoxy.language} for stage 2 task`);
-return `Hello World, this is ${intern_pidoxy.fullName} with HNGi7 ID ${intern_pidoxy.ID} using ${intern_pidoxy.language} for stage 2 task`
+console.log(`Hello World, this is Emmanuel Idoko with HNGi7 ID HNG-00247 using JavaScript for stage 2 task`);
+// return `Hello World, this is ${intern_pidoxy.fullName} with HNGi7 ID ${intern_pidoxy.ID} using ${intern_pidoxy.language} for stage 2 task`;
