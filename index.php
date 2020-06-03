@@ -1,151 +1,173 @@
 <?php
-/*
- * This file is designed to read the scripts folder and read the content of every single file found there o extract the content
- *
- **/
-$supported_languages = ["php"=>"php", "py"=>"python"];
-$supported_client_side_languages = ["js", "html"];
 
-$scripts_dir = "./scripts";
-$files = scandir($scripts_dir);
-// var_dump($files);
-$foundInterns = [];
-$foundInternsHtml = "";
-$Pass = "green";
-$Fail = "red";
-if(count($files) > 0){
-	//Here Loop in all found files and try to get the right ones.
-	foreach($files AS $file){
-		$fileInformation = explode(".", $file);
-		
-		//Check if the found file is valid First
-		if(is_dir($scripts_dir."/".$file)){
-			// echo $file." is skipped because it looks strange!\n";
-			continue;
-		}
+$json = $_SERVER["QUERY_STRING"] ?? '';
 
-		//Here the file is valid now read the file and split every single text inside
-		//Now gwt thw file extension to determin w=hich command should be used
-		
-		$results = "";
-		//Here the Extensiol should be the last data
-		if(count($fileInformation) > 1){
-			//Here the file has a name and an extension
-			$extension = $fileInformation[(count($fileInformation) - 1)];
-			$command = "";
-			// var_dump($extension);
-			if(array_key_exists(strtolower($extension), $supported_languages)){
-				$command = $supported_languages[strtolower($extension)]." ".$scripts_dir."/".$file;
+$files = scandir("scripts/");
 
-				//Here Make sure to return the text from command
-				$results = exec($command);
-				// var_dump($results);
-			} else {
-				// echo $extension;response
-				//Here Check if the comming code is for javascript
-				if(in_array(strtolower($extension), $supported_client_side_languages)){
-					// var_dump("JS Found for ", $file);
-					$curl = curl_init();
-				    // Set some options - we are passing in a useragent too here
+unset($files[0]);
+unset($files[1]);
+unset($files[2]);
+$output = [];
+$outputJSON = [];
+$data = [];
+$passes = 0;
+$fails = 0;
+foreach ($files as $file) {
 
-				    $headers = [
-				        'Accept: text/html',
-				    ];
+    $extension = explode('.', $file);
 
-				    $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
-				    $host = $_SERVER['HTTP_HOST'];
-				    $uri = str_replace("index.php","",$_SERVER['PHP_SELF']);
+    switch ($extension[1]) {
+        case 'php':
+            $startScript = "php";
+            break;
+        case 'js':
+            $startScript = "node";
+            break;
+        case 'py':
+            $startScript = "python";
+            break;
+        case 'dart':
+            $startScript = "dart";
+            break;
+        case 'java':
+            $startScript = "java";
 
-				    $url = $protocol.$host.$uri."scripts/".$file;
-				    // echo $url;
+            exec("javac scripts/" . $file);
+            break;
 
-				    // var_dump("<pre>", $_SERVER, $url); die();
-				    curl_setopt_array($curl, [
-				        CURLOPT_RETURNTRANSFER => 1,
-				        CURLOPT_URL => $url,
-				        // CURLOPT_USERAGENT => 'HGN Internship program task 1',
-				        CURLOPT_HTTPHEADER => $headers
-				    ]);
+        default:
+            $startScript = "php";
+            break;
+    }
 
-				    
-				    // Send the request & save response to $resp
-				    $response = curl_exec($curl);
-				    // var_dump($response); die();
-				    $results = strip_tags($response);
-				    // dd($resp);
-				    // var_dump($results); die();
-				    // Close request to clear up some resources
-				    curl_close($curl);
-				} else {
-					$results = "";
-					$dir = __DIR__;
-					// echo $dir;
-					//Here The command should be read =ing th file as text
-					$fp = fopen($dir."/scripts/".$file, "r+");
-					// var_dump($fp);
-					while ($line = stream_get_line($fp, 1024 * 1024, "\n")) {
-					  $results .= $line;
-					}
-					fclose($fp);
-				}
-			}
-		} else {
-			$results = "";
-		}
-		$internPassed = [];
-		$internPassedHTML = "";
-		if(trim($results)){
-			$rslt = "Pass";
-			//Here Extract the Required Information 
-			$removeHelloword = preg_split("/(Hello World, this is )/", $results);
-			$results = $removeHelloword[1];
-			//Here Get the intern full name from the string returned from its data
-			$splittedInformation = preg_split("/(with HNGi7 ID)/", $results);
-			// var_dump("\n", $splittedInformation, "\n");
-			$full_name = str_replace("Hello World, this is ", "", trim($splittedInformation[0])) ;
-			if(!trim($full_name)){
-				$rslt = "Fail";
-			}
-			$remainingPart = $splittedInformation[1];
+    $f = exec($startScript . " scripts/" . $file);
 
-			$internPassedHTML = "Hello World, this is <b>".$full_name."</b> with ";
-			$internPassed['full_name'] = $full_name;
-			// var_dump($full_name);
+    @$data[$extension[0]]->content = $f;
+    $data[$extension[0]]->status = testFileContent($f);
+    $data[$extension[0]]->name = $extension[0];
+    $output[] = [$f, testFileContent($f), $extension[0]];
+}
+$outputJSON = $data;
 
-			//Here Extraxt the Intern ID
-			$splittedInformation = preg_split("/( using )/", $remainingPart);
-			// var_dump($splittedInformation);
-			$hgni7_id = trim($splittedInformation[0]);
-			if(!trim($hgni7_id)){
-				$rslt = "Fail";
-			}
-			$internPassedHTML .= "HNGi7 ID: <b>".$hgni7_id."</b> using ";
-			$internPassed['hgni7_id'] = $hgni7_id;
-			//remove the last strings informations
-			$language = preg_split("/( for stage 2 task)/", trim($splittedInformation[1]))[0];
-			// $language = str_replace(" for stage 2 task", "", trim($splittedInformation[1]));
-			if(!trim($language)){
-				$rslt = "Fail";
-			}
-			$internPassedHTML .= "language: <b>".$language."</b> for stage 2 task<br />TEST RESULT:<span style='font-weight: bold; font-size: 18px; color:".($$rslt)."'>".$rslt."</span><hr />";
-			$internPassed['language'] = $language;
+function testFileContent($string)
+{
+    if (preg_match('/^Hello\sWorld[,|.|!]?\sthis\sis\s[a-zA-Z]{2,}\s[a-zA-Z]{2,}(\s[a-zA-Z]{2,})?\swith\sHNGi7\sID\s(HNG-\d{3,})\susing\s[a-zA-Z|#]{2,}\sfor\sstage\s2\stask.?$/i', trim($string))) {
+        return 'Pass';
+    }
 
-			$internPassed['status'] = $rslt;
-		}
-		// 
-		if(count($internPassed) == 4){
-			// var_dump("<pre>",$internPassed, "</pre>");
-			$foundInterns[] = $internPassed;
-
-			$foundInternsHtml .= "<br />".$internPassedHTML;
-		}
-	}
+    return 'Fail';
 }
 
-if(isset($_GET['json'])){
-	echo json_encode($foundInterns);
+foreach ($output as $val) {
+    if ($val[1] == 'Pass') {
+        $passes++;
+    } elseif ($val[1] == 'Fail') {
+        $fails++;
+    }
+}
+
+if (isset($json) && $json == 'json') {
+    echo json_encode($outputJSON);
 } else {
-	echo $foundInternsHtml;
+    ?>
+    <html>
+
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>
+
+    <body>
+    <div class="container-fluid">
+        <nav class="navbar navbar-dark bg-dark fixed-top">
+                <span class="navbar-text">
+                    HNGi7 Team Sentry
+                </span>
+            <div class="float-right text-white">
+                <small>
+                    Leader: <span class="btn btn-sm btn btn-outline-primary">@E.U</span>
+                </small> &nbsp;
+                <small>
+                    FrontEnd: <span class="btn btn-sm btn btn-outline-success">@dona</span>
+                </small> &nbsp;
+                <small>
+                    DevOps: <span class="btn btn-sm btn btn-outline-info">@Fidele</span>
+                </small> &nbsp;
+            </div>
+        </nav>
+    </div>
+    <div class="container">
+        <div class="row" style="padding: 6em 0" class="text-center">
+            <div class="col-md-4">
+                <button type="button" class="btn">
+                    Submitted <span class="badge badge-primary"><?php echo ($passes + $fails)  ?></span>
+                </button>
+            </div>
+            <div class="col-md-4">
+                <button type="button" class="btn">
+                    Passes <span class="badge badge-success"><?php echo ($passes)  ?></span>
+                </button>
+            </div>
+            <div class="col-md-4">
+                <button type="button" class="btn">
+                    Fails <span class="badge badge-danger"><?php echo ($fails)  ?></span>
+                </button>
+            </div>
+        </div>
+        <table class="table table-hover center table-striped">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Message</th>
+                <th scope="col">Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+            $row = 0;
+            foreach ($output as $out) {
+
+                $status = $out[1] == 'Pass' ? 1 : 0;
+                if ($status) {
+                    echo <<<EOL
+                                <tr class="table-success">
+                                <th scope="row">$row</th>
+                                <td><b>$out[2]</b></td>
+                                <td>$out[0]</td>
+                                <td>$out[1] ✅</td>
+                                </tr>
+                             EOL;
+                }
+                else {
+                    echo <<<EOL
+                                <tr class="table-danger">
+                                <th scope="row">$row</th>
+                                <td><b>$out[2]</b></td>
+                                <td>$out[0]</td>
+                                <td>$out[1] ❌</td>
+                                </tr>
+                            EOL;
+                }
+                $row++;
+
+                flush();
+                ob_flush();
+
+                sleep(1); //used this to test the buffering
+
+            }
+            ?>
+
+            </tbody>
+        </table>
+
+
+    </div>
+
+    </body>
+
+    </html>
+    <?php
 }
-// echo "\n";
+
 ?>
