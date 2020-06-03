@@ -1,9 +1,12 @@
-var intern = {
-    "fullName": "Adigwe Stanley",
-    "HNGID":"HNG-02888",
-    "language":"JavaScript",
-    "emailAddress":"stanleeadigwe@yahoo.com",
-    "displayData":`Hello World, this is ${intern.fullName} with HNGi7 ID ${intern.HNGID} using ${intern.language} for stage 2 task`
-};
+master
 
-console.log(intern.displayData);
+fullName: `Adigwe Stanley`;
+HNGID:`HNG-02888`;
+language:`JavaScript`;
+email:`stanleeadigwe@yahoo.com`;
+displayData:`Hello World, this is Adigwe Stanley with HNGi7 ID HNG-02888 using JavaScript for stage 2 task and stanleeadigwe@yahoo.com`;
+
+
+console.log(displayData);
+
+master
