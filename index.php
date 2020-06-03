@@ -124,10 +124,13 @@ for ($counter = 0; $counter < count($nfiles); $counter++){
     }  
    
 }
+$jsonlist = $json;
+print_r($jsonlist);
 $json = json_encode($json);
 if (isset($_GET['json'])){
     echo $json;
 }else{
+	
     echo (
         "<!doctype html>
 <html lang='en'>
@@ -177,8 +180,8 @@ if (isset($_GET['json'])){
                             <th>Status</th>
                         </tr>
                     </thead>
-                    <tbody>"
-                        . $html .
+					<tbody>"
+						. $html .
                     "</tbody>
                 </table>
             </div>
@@ -192,6 +195,8 @@ if (isset($_GET['json'])){
     <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js' integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM' crossorigin='anonymous'></script>
 </html>"
 	);
+
+
 }
 ?>
 
