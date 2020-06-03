@@ -25,7 +25,7 @@ for ($counter = 0; $counter < count($nfiles); $counter++){
         
     }
     if ($path_info["extension"] == "py"){
-        $ret = exec("py scripts/".$file." 2>&1 ", $output,$return_var);
+        $ret = exec("python scripts/".$file." 2>&1 ", $output,$return_var);
         
     }
     if ($path_info["extension"] == "php"){
