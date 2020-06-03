@@ -1,0 +1,1 @@
+console.log(((n)=>(id)=>`Hello World, this is ${n} with HNGi7 ID ${id} using JavaScript for stage 2 task`)('Nkwuda Sunday')('HNG-03551'))
