@@ -1,4 +1,4 @@
-let fullName = "Abiola Joshua Olagunju";
+let fullName = "Abiola Olagunju";
 let id = "HNG-04357";
 let language = "JavaScripts";
 let email = "abbey4j2012@gmail.com";
