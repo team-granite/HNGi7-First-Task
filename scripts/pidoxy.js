@@ -1,7 +1,8 @@
 let intern_pidoxy = {
     fullName: "Emmanuel Idoko",
     ID: "HNG-00247",
-    language: "JavaScript"
+    language: "JavaScript",
+    email: "pidox31102002@gmail.com"
 }
 
 function giveOutput() {
