@@ -99,7 +99,7 @@ for ($counter = 0; $counter < count($nfiles); $counter++){
             <td >".$id."</td>
             <td >".$email."</td>
             <td>".$userStrings."</td>
-            <td> <span class='btn btn-failure btn-disabled btn-sm'>Fail</span></td>
+            <td> <span class='btn btn-danger btn-disabled btn-sm'>Fail</span></td>
         </tr>";
         $obj = [
             "file" => $file,
@@ -133,6 +133,27 @@ if (isset($_GET['json'])){
     <div class='container p-5 text-center'>
         <h1>HNGi7 Team Granite </h1>
         <a href='?json' class='btn btn-dark btn-sm'>VIEW JSON</a>
+	</div>
+	<div class='card mt-5 p-4'>
+            <div class='row'>
+                <div class='col-1'></div>
+                <div class='col-2'>
+                    <span class='btn btn-success btn-disabled btn-sm btn-block'>20 Passed</span>
+                </div>
+                <div class='col-2'>
+                    <span class='btn btn-danger btn-disabled btn-sm btn-block'>5 Failed</span>
+                </div>
+                <div class='col-2'>
+                    <span class='btn btn-light btn-disabled btn-sm btn-block'>10 PHP SCRIPT</span>
+                </div>
+                <div class='col-2'>
+                    <span class='btn btn-light btn-disabled btn-sm btn-block'>15 JavsScript</span>
+                </div>
+                <div class='col-2'>
+                    <span class='btn btn-light btn-disabled btn-sm btn-block'>5 Python SCRIPT</span>
+                </div>
+            </div>
+        </div>
     </div>
     <div class='container mt-5 p-0'>
         <div class='row'>
