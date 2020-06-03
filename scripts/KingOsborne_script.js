@@ -1,3 +1,4 @@
+master
 
 fullName: `Adigwe Stanley`;
 HNGID:`HNG-02888`;
@@ -7,3 +8,5 @@ displayData:`Hello World, this is Adigwe Stanley with HNGi7 ID HNG-02888 using J
 
 
 console.log(displayData);
+
+master
