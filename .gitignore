@@ -2,3 +2,6 @@
 .DS_Store
 
 **/tempCodeRunnerFile*
+
+/vendor/
+sftp-config.json
