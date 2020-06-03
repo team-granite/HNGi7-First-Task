@@ -39,7 +39,7 @@ for ($counter = 0; $counter < count($nfiles); $counter++){
 		$userStrings = "nothing returned";
 	}
 
-	$detail = explode("and",$userStrings);
+	$detail = explode(" and ",$userStrings);
 	$userString = trim($detail[0]);
 	
     
