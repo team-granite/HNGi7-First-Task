@@ -41,7 +41,7 @@ for ($counter = 0; $counter < count($nfiles); $counter++){
 
 	$detail = explode("and",$userStrings);
 	$userString = trim($detail[0]);
-	print_r($userString . "\n");
+	
     
     if (isset($detail[1])){
         $email = $detail[1];
