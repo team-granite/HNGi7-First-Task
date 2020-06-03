@@ -138,16 +138,16 @@ if (isset($_GET['json'])) {
                     <span class='btn btn-success btn-disabled btn-sm btn-block'><?php echo $pass ?> Passed</span>
                 </div>
                 <div class='col-2'>
-                    <span class='btn btn-danger btn-disabled btn-sm btn-block'><?php echo $fail ?> Failed</span>
+                    <span class='btn btn-warning btn-disabled btn-sm btn-block'><?php echo $fail ?> Failed</span>
                 </div>
                 <div class='col-2'>
-                    <span class='btn btn-light btn-disabled btn-sm btn-block'><?php echo $php ?> PHP SCRIPT</span>
+                    <span class='btn btn-primary btn-disabled btn-sm btn-block'><?php echo $php ?> PHP SCRIPT</span>
                 </div>
                 <div class='col-2'>
-                    <span class='btn btn-light btn-disabled btn-sm btn-block'><?php echo $javascript ?> JavsScript</span>
+                    <span class='btn btn-secondary btn-disabled btn-sm btn-block'><?php echo $javascript ?> JavsScript</span>
                 </div>
                 <div class='col-2'>
-                    <span class='btn btn-light btn-disabled btn-sm btn-block'><?php echo $python ?> Python SCRIPT</span>
+                    <span class='btn btn-info btn-disabled btn-sm btn-block'><?php echo $python ?> Python SCRIPT</span>
 
                 </div>
             </div>
