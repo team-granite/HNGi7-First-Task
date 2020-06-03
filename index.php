@@ -3,8 +3,8 @@
  * This file is designed to read the scripts folder and read the content of every single file found there o extract the content
  *
  **/
-$supported_languages = ["php"=>"php", "py"=>"python"];
-$supported_client_side_languages = ["js", "html"];
+$supported_languages = ["php"=>"php", "py"=>"python", "js"=>"/usr/local/bin/node"];
+$supported_client_side_languages = [];
 
 $scripts_dir = "./scripts";
 $files = scandir($scripts_dir);
@@ -39,8 +39,10 @@ if(count($files) > 0){
 
 				//Here Make sure to return the text from command
 				$results = exec($command);
-				// var_dump($results);
-			} else {
+				if($extension == "js"){
+					// var_dump($command, "\n", $results, "\n");
+				}
+			} else if(false){
 				// echo $extension;response
 				//Here Check if the comming code is for javascript
 				if(in_array(strtolower($extension), $supported_client_side_languages)){
@@ -88,6 +90,8 @@ if(count($files) > 0){
 					}
 					fclose($fp);
 				}
+			} else {
+				$results = "";
 			}
 		} else {
 			$results = "";
@@ -96,6 +100,24 @@ if(count($files) > 0){
 		$internPassedHTML = "";
 		if(trim($results)){
 			$rslt = "Pass";
+
+			//Here Get the email from the string
+			$emailsMatch = [];
+			$user_email = "";
+			$internPassed["file"] = $file;
+			$internPassed['output'] = $results;
+			if(preg_match("/\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+/", $results, $emailsMatch)){
+				// var_dump($emailsMatch, "\n");
+
+				foreach($emailsMatch AS $foundEmail){
+					// var_dump($foundEmail, "<br />");
+					if(preg_match("/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/", trim($foundEmail))){
+						$user_email = trim($foundEmail);
+						break;
+					}
+				}
+			}
+			// var_dump($results, "<br />"); continue;
 			//Here Extract the Required Information 
 			$removeHelloword = preg_split("/(Hello World, this is )/", $results);
 			$results = $removeHelloword[1];
@@ -103,42 +125,46 @@ if(count($files) > 0){
 			$splittedInformation = preg_split("/(with HNGi7 ID)/", $results);
 			// var_dump("\n", $splittedInformation, "\n");
 			$full_name = str_replace("Hello World, this is ", "", trim($splittedInformation[0])) ;
-			if(!trim($full_name)){
+			if(!trim($full_name) || preg_match("/[^a-zA-Z0-9_ ]/", $full_name)){
 				$rslt = "Fail";
 			}
 			$remainingPart = $splittedInformation[1];
 
 			$internPassedHTML = "Hello World, this is <b>".$full_name."</b> with ";
-			$internPassed['full_name'] = $full_name;
+			$internPassed['name'] = $full_name;
 			// var_dump($full_name);
 
 			//Here Extraxt the Intern ID
 			$splittedInformation = preg_split("/( using )/", $remainingPart);
 			// var_dump($splittedInformation);
 			$hgni7_id = trim($splittedInformation[0]);
-			if(!trim($hgni7_id)){
+			if(!trim($hgni7_id) || !preg_match("/^HNG-[0-9]{5}$/", $hgni7_id)){
 				$rslt = "Fail";
 			}
 			$internPassedHTML .= "HNGi7 ID: <b>".$hgni7_id."</b> using ";
-			$internPassed['hgni7_id'] = $hgni7_id;
+			$internPassed['id'] = $hgni7_id;
+
+			$internPassed['email']		= $user_email;
 			//remove the last strings informations
 			$language = preg_split("/( for stage 2 task)/", trim($splittedInformation[1]))[0];
 			// $language = str_replace(" for stage 2 task", "", trim($splittedInformation[1]));
 			if(!trim($language)){
 				$rslt = "Fail";
 			}
-			$internPassedHTML .= "language: <b>".$language."</b> for stage 2 task<br />TEST RESULT:<span style='font-weight: bold; font-size: 18px; color:".($$rslt)."'>".$rslt."</span><hr />";
-			$internPassed['language'] = $language;
-
-			$internPassed['status'] = $rslt;
+			$internPassedHTML .= "language: <b>".$language."</b> for stage 2 task<br />TEST RESULT:<span style='font-weight: bold; font-size: 18px; color:".($$rslt)."'>".$rslt."</span> email: <b>".$user_email."<b><hr />";
+			$internPassed['language'] 	= $language;
+			
+			$internPassed['status'] 	= $rslt;
 		}
 		// 
-		if(count($internPassed) == 4){
+		if(count($internPassed) == 7){
 			// var_dump("<pre>",$internPassed, "</pre>");
 			$foundInterns[] = $internPassed;
+		}
 
 			$foundInternsHtml .= "<br />".$internPassedHTML;
-		}
+		// }
+		// echo "<hr /><hr /><hr />";
 	}
 }
 
