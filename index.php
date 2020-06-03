@@ -104,8 +104,8 @@ if(count($files) > 0){
 			//Here Get the email from the string
 			$emailsMatch = [];
 			$user_email = "";
-
-			$internPassed['data'] = $results;
+			$internPassed["file"] = $file;
+			$internPassed['output'] = $results;
 			if(preg_match("/\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+/", $results, $emailsMatch)){
 				// var_dump($emailsMatch, "\n");
 
@@ -131,7 +131,7 @@ if(count($files) > 0){
 			$remainingPart = $splittedInformation[1];
 
 			$internPassedHTML = "Hello World, this is <b>".$full_name."</b> with ";
-			$internPassed['full_name'] = $full_name;
+			$internPassed['name'] = $full_name;
 			// var_dump($full_name);
 
 			//Here Extraxt the Intern ID
@@ -142,7 +142,9 @@ if(count($files) > 0){
 				$rslt = "Fail";
 			}
 			$internPassedHTML .= "HNGi7 ID: <b>".$hgni7_id."</b> using ";
-			$internPassed['hgni7_id'] = $hgni7_id;
+			$internPassed['id'] = $hgni7_id;
+
+			$internPassed['email']		= $user_email;
 			//remove the last strings informations
 			$language = preg_split("/( for stage 2 task)/", trim($splittedInformation[1]))[0];
 			// $language = str_replace(" for stage 2 task", "", trim($splittedInformation[1]));
@@ -151,17 +153,17 @@ if(count($files) > 0){
 			}
 			$internPassedHTML .= "language: <b>".$language."</b> for stage 2 task<br />TEST RESULT:<span style='font-weight: bold; font-size: 18px; color:".($$rslt)."'>".$rslt."</span> email: <b>".$user_email."<b><hr />";
 			$internPassed['language'] 	= $language;
-			$internPassed['email']		= $user_email;
+			
 			$internPassed['status'] 	= $rslt;
 		}
 		// 
-		if(count($internPassed) == 6){
+		if(count($internPassed) == 7){
 			// var_dump("<pre>",$internPassed, "</pre>");
 			$foundInterns[] = $internPassed;
-
+		}
 
 			$foundInternsHtml .= "<br />".$internPassedHTML;
-		}
+		// }
 		// echo "<hr /><hr /><hr />";
 	}
 }

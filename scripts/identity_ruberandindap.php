@@ -1,6 +1,6 @@
 <?php
 $identification = array(
-	"name" 		=> "{Ruberandinda Patience",
+	"name" 		=> "Ruberandinda Patience",
 	"hgn_id" 	=> "HNG-05969",
 	"language" 	=> "PHP",
 	"email"		=> "ruberandindap@gmail.com"
