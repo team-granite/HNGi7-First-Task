@@ -5,10 +5,13 @@ let intern_pidoxy = {
     email: "pidox31102002@gmail.com"
 }
 
-function giveOutput() {
-    let output = `Hello World, this is ${intern_pidoxy.fullName} with HNGi7 ID ${intern_pidoxy.ID} using ${intern_pidoxy.language} for stage 2 task`
-    console.log(output);
-    return output;
-}
+// function giveOutput() {
+//     let output = `Hello World, this is ${intern_pidoxy.fullName} with HNGi7 ID ${intern_pidoxy.ID} using ${intern_pidoxy.language} for stage 2 task`
+//     console.log(output);
+//     return output;
+// }
 
-giveOutput();
+// giveOutput();
+
+console.log(`Hello World, this is ${intern_pidoxy.fullName} with HNGi7 ID ${intern_pidoxy.ID} using ${intern_pidoxy.language} for stage 2 task`);
+return `Hello World, this is ${intern_pidoxy.fullName} with HNGi7 ID ${intern_pidoxy.ID} using ${intern_pidoxy.language} for stage 2 task`
