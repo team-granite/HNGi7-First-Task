@@ -1,151 +1,191 @@
 <?php
-/*
- * This file is designed to read the scripts folder and read the content of every single file found there o extract the content
- *
- **/
-$supported_languages = ["php"=>"php", "py"=>"python"];
-$supported_client_side_languages = ["js", "html"];
 
-$scripts_dir = "./scripts";
-$files = scandir($scripts_dir);
-// var_dump($files);
-$foundInterns = [];
-$foundInternsHtml = "";
-$Pass = "green";
-$Fail = "red";
-if(count($files) > 0){
-	//Here Loop in all found files and try to get the right ones.
-	foreach($files AS $file){
-		$fileInformation = explode(".", $file);
-		
-		//Check if the found file is valid First
-		if(is_dir($scripts_dir."/".$file)){
-			// echo $file." is skipped because it looks strange!\n";
-			continue;
-		}
+$files = scandir("scripts");
 
-		//Here the file is valid now read the file and split every single text inside
-		//Now gwt thw file extension to determin w=hich command should be used
-		
-		$results = "";
-		//Here the Extensiol should be the last data
-		if(count($fileInformation) > 1){
-			//Here the file has a name and an extension
-			$extension = $fileInformation[(count($fileInformation) - 1)];
-			$command = "";
-			// var_dump($extension);
-			if(array_key_exists(strtolower($extension), $supported_languages)){
-				$command = $supported_languages[strtolower($extension)]." ".$scripts_dir."/".$file;
-
-				//Here Make sure to return the text from command
-				$results = exec($command);
-				// var_dump($results);
-			} else {
-				// echo $extension;response
-				//Here Check if the comming code is for javascript
-				if(in_array(strtolower($extension), $supported_client_side_languages)){
-					// var_dump("JS Found for ", $file);
-					$curl = curl_init();
-				    // Set some options - we are passing in a useragent too here
-
-				    $headers = [
-				        'Accept: text/html',
-				    ];
-
-				    $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
-				    $host = $_SERVER['HTTP_HOST'];
-				    $uri = str_replace("index.php","",$_SERVER['PHP_SELF']);
-
-				    $url = $protocol.$host.$uri."scripts/".$file;
-				    // echo $url;
-
-				    // var_dump("<pre>", $_SERVER, $url); die();
-				    curl_setopt_array($curl, [
-				        CURLOPT_RETURNTRANSFER => 1,
-				        CURLOPT_URL => $url,
-				        // CURLOPT_USERAGENT => 'HGN Internship program task 1',
-				        CURLOPT_HTTPHEADER => $headers
-				    ]);
-
-				    
-				    // Send the request & save response to $resp
-				    $response = curl_exec($curl);
-				    // var_dump($response); die();
-				    $results = strip_tags($response);
-				    // dd($resp);
-				    // var_dump($results); die();
-				    // Close request to clear up some resources
-				    curl_close($curl);
-				} else {
-					$results = "";
-					$dir = __DIR__;
-					// echo $dir;
-					//Here The command should be read =ing th file as text
-					$fp = fopen($dir."/scripts/".$file, "r+");
-					// var_dump($fp);
-					while ($line = stream_get_line($fp, 1024 * 1024, "\n")) {
-					  $results .= $line;
-					}
-					fclose($fp);
-				}
-			}
-		} else {
-			$results = "";
-		}
-		$internPassed = [];
-		$internPassedHTML = "";
-		if(trim($results)){
-			$rslt = "Pass";
-			//Here Extract the Required Information 
-			$removeHelloword = preg_split("/(Hello World, this is )/", $results);
-			$results = $removeHelloword[1];
-			//Here Get the intern full name from the string returned from its data
-			$splittedInformation = preg_split("/(with HNGi7 ID)/", $results);
-			// var_dump("\n", $splittedInformation, "\n");
-			$full_name = str_replace("Hello World, this is ", "", trim($splittedInformation[0])) ;
-			if(!trim($full_name)){
-				$rslt = "Fail";
-			}
-			$remainingPart = $splittedInformation[1];
-
-			$internPassedHTML = "Hello World, this is <b>".$full_name."</b> with ";
-			$internPassed['full_name'] = $full_name;
-			// var_dump($full_name);
-
-			//Here Extraxt the Intern ID
-			$splittedInformation = preg_split("/( using )/", $remainingPart);
-			// var_dump($splittedInformation);
-			$hgni7_id = trim($splittedInformation[0]);
-			if(!trim($hgni7_id)){
-				$rslt = "Fail";
-			}
-			$internPassedHTML .= "HNGi7 ID: <b>".$hgni7_id."</b> using ";
-			$internPassed['hgni7_id'] = $hgni7_id;
-			//remove the last strings informations
-			$language = preg_split("/( for stage 2 task)/", trim($splittedInformation[1]))[0];
-			// $language = str_replace(" for stage 2 task", "", trim($splittedInformation[1]));
-			if(!trim($language)){
-				$rslt = "Fail";
-			}
-			$internPassedHTML .= "language: <b>".$language."</b> for stage 2 task<br />TEST RESULT:<span style='font-weight: bold; font-size: 18px; color:".($$rslt)."'>".$rslt."</span><hr />";
-			$internPassed['language'] = $language;
-
-			$internPassed['status'] = $rslt;
-		}
-		// 
-		if(count($internPassed) == 4){
-			// var_dump("<pre>",$internPassed, "</pre>");
-			$foundInterns[] = $internPassed;
-
-			$foundInternsHtml .= "<br />".$internPassedHTML;
-		}
-	}
+function filter_files($var)
+{
+    $arr = [];
+    for ($counter = 0; $counter < count($var); $counter++) {
+        $file = $var[$counter];
+        if (strlen($file) > 3) {
+            array_push($arr, $file);
+        }
+    }
+    return $arr;
 }
 
-if(isset($_GET['json'])){
-	echo json_encode($foundInterns);
+$nfiles = filter_files($files);
+
+$html = "";
+$json = [];
+$pass = 0;
+$fail = 0;
+$python = 0;
+$javascript = 0;
+$php = 0;
+for ($counter = 0; $counter < count($nfiles); $counter++) {
+    $file = $nfiles[$counter];
+    $path_info = pathinfo($file);
+    if ($path_info["extension"] == "js") {
+        $ret = exec("node scripts/" . $file . " 2>&1 ", $output, $return_var);
+        $javascript++;
+    }
+    if ($path_info["extension"] == "py") {
+        $ret = exec("python scripts/" . $file . " 2>&1 ", $output, $return_var);
+        $python++;
+    }
+    if ($path_info["extension"] == "php") {
+        $ret = exec("php scripts/" . $file . " 2>&1 ", $output, $return_var);
+        $php++;
+    }
+
+    if (isset($output[0])) {
+        $userStrings = strip_tags($output[0]);
+    } else {
+        $userStrings = "nothing returned";
+    }
+
+    $detail = explode(" and ", $userStrings);
+    $userString = trim($detail[0]);
+
+
+    if (isset($detail[1])) {
+        $email = $detail[1];
+    } else {
+        $email = "";
+    }
+
+
+    preg_match("/ [a-zA-Z]+ [a-zA-Z]+ with/", $userString, $matches);
+    preg_match("/ HNG-[0-9]+ using/", $userString, $matches2);
+    preg_match("/ [a-zA-Z]+ for/", $userString, $matches3);
+
+    if (isset($matches2[0])) {
+        $id = substr($matches2[0], 1, -6);
+    } else {
+        $id = "";
+    }
+    if (isset($matches[0])) {
+        $name = substr($matches[0], 1, -5);
+    } else {
+        $name = "";
+    }
+    if (isset($matches3[0])) {
+        $language = substr($matches3[0], 0, -3);
+    } else {
+        $language = "";
+    }
+
+
+
+    if (preg_match("/^Hello World, this is [a-zA-Z]+ [a-zA-Z]+ with HNGi7 ID HNG-[0-9]+ using [a-zA-Z]+ for stage 2 task$/", $userString)) {
+        $html = $html .
+            "<tr>
+            <td scope='row'>" . $name . "</td>
+            <td >" . $id . "</td>
+            <td >" . $email . "</td>
+            <td>" . $userStrings . "</td>
+            <td> <span class='btn btn-primary btn-disabled btn-sm'>Pass</span></td>
+        </tr>";
+        $obj = [
+            "file" => $file,
+            "output" => $userStrings,
+            "email" => $email,
+            "fullname" => $name,
+            "HNG Id" => $id,
+            "language" => $language,
+            "status" => "pass"
+        ];
+        array_push($json, $obj);
+        $pass++;
+        $output = [];
+    } else {
+        $html = $html .
+            "<tr>
+            <td scope='row'>" . $name . "</td>
+            <td >" . $id . "</td>
+            <td >" . $email . "</td>
+            <td>" . $userStrings . "</td>
+            <td> <span class='btn btn-danger btn-disabled btn-sm'>Fail</span></td>
+        </tr>";
+        $obj = [
+            "file" => $file,
+            "output" => $userStrings,
+            "email" => $email,
+            "fullname" => $name,
+            "HNG Id" => $id,
+            "language" => $language,
+            "status" => "fail"
+        ];
+        array_push($json, $obj);
+        $fail++;
+        $output = [];
+    }
+}
+$json = json_encode($json);
+if (isset($_GET['json'])) {
+    echo $json;
 } else {
-	echo $foundInternsHtml;
+    echo ("<!doctype html>
+<html lang='en'>
+  <head>
+    <title>HNGi7 Task 2 - Team Granite</title>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
+    <!-- Bootstrap CSS -->
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
+  </head>
+  <body>
+    <div class='container p-5 text-center'>
+        <h1>HNGi7 Team Granite </h1>
+        <a href='?json' class='btn btn-info btn-sm'>VIEW JSON</a>
+	</div>
+	<div class='card mt-5 p-4'>
+            <div class='row'>
+                <div class='col-1'></div>
+                <div class='col-2'>
+                    <span class='btn btn-success btn-disabled btn-sm btn-block'>" . $pass . " Passed</span>
+                </div>
+                <div class='col-2'>
+                    <span class='btn btn-warning btn-disabled btn-sm btn-block'>" . $fail . " Failed</span>
+                </div>
+                <div class='col-2'>
+                    <span class='btn btn-primary btn-disabled btn-sm btn-block'>" . $php . " PHP SCRIPT</span>
+                </div>
+                <div class='col-2'>
+                    <span class='btn btn-secondary btn-disabled btn-sm btn-block'>" . $javascript . " JavsScript</span>
+                </div>
+                <div class='col-2'>
+                    <span class='btn btn-info btn-disabled btn-sm btn-block'>" . $python . " Python SCRIPT</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class='container mt-5 p-0'>
+        <div class='row'>
+            <div class='col-12'>
+                <table class='table table-bordered table-hover table-striped'>
+                    <thead class='thead-dark'>
+                        <tr>
+                            <th>Full Name</th>
+                            <th>HNG-ID</th>
+                            <th>Email</th>
+                            <th>Response</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>"
+        . $html .
+        "</tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+  </body>
+  <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src='https://code.jquery.com/jquery-3.3.1.slim.min.js' integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo' crossorigin='anonymous'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js' integrity='sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1' crossorigin='anonymous'></script>
+    <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js' integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM' crossorigin='anonymous'></script>
+</html>");
 }
-// echo "\n";
-?>
