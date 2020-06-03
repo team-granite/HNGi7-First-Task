@@ -78,8 +78,8 @@ for ($counter = 0; $counter < count($nfiles); $counter++) {
 
 
 
-	
-    if (preg_match("/^Hello World, this is [a-zA-Z]+ [a-zA-Z]+ with HNGi7 ID HNG-[0-9]+ using [a-zA-Z]+ for stage 2 task$/", $userString)){
+
+    if (preg_match("/^Hello World, this is [a-zA-Z]+ [a-zA-Z]+ with HNGi7 ID HNG-[0-9]+ using [a-zA-Z]+ for stage 2 task$/", $userString)) {
 
         $obj = [
             "file" => $file,
@@ -93,8 +93,7 @@ for ($counter = 0; $counter < count($nfiles); $counter++) {
         array_push($json, $obj);
         $pass++;
         $output = [];
-
-    }else {
+    } else {
 
         $obj = [
             "file" => $file,
@@ -114,24 +113,25 @@ $jsonlist = $json;
 $json = json_encode($json);
 if (isset($_GET['json'])) {
     echo $json;
+} else {
+?>
+    <!doctype html>
+    <html lang='en'>
 
-}else{
-	?>
-<!doctype html>
-<html lang='en'>
-  <head>
-    <title>HNGi7 Task 2 - Team Granite</title>
-    <meta charset='utf-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
-    <!-- Bootstrap CSS -->
-    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
-  </head>
-  <body>
-    <div class='container p-5 text-center'>
-        <h1>HNGi7 Team Granite </h1>
-        <a href='?json' class='btn btn-info btn-sm'>VIEW JSON</a>
-	</div>
-	<div class='card mt-5 p-4'>
+    <head>
+        <title>HNGi7 Task 2 - Team Granite</title>
+        <meta charset='utf-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
+        <!-- Bootstrap CSS -->
+        <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
+    </head>
+
+    <body>
+        <div class='container p-5 text-center'>
+            <h1>HNGi7 Team Granite </h1>
+            <a href='?json' class='btn btn-info btn-sm'>VIEW JSON</a>
+        </div>
+        <div class='card mt-5 p-4'>
             <div class='row'>
                 <div class='col-1'></div>
                 <div class='col-2'>
@@ -152,58 +152,58 @@ if (isset($_GET['json'])) {
                 </div>
             </div>
         </div>
-    </div>
-    <div class='container mt-5 p-0'>
-        <div class='row'>
-            <div class='col-12'>
-                <table class='table table-bordered table-hover table-striped'>
-                    <thead class='thead-dark'>
-                        <tr>
-                            <th>Full Name</th>
-                            <th>HNG-ID</th>
-                            <th>Email</th>
-                            <th>Response</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
+        </div>
+        <div class='container mt-5 p-0'>
+            <div class='row'>
+                <div class='col-12'>
+                    <table class='table table-bordered table-hover table-striped'>
+                        <thead class='thead-dark'>
+                            <tr>
+                                <th>Full Name</th>
+                                <th>HNG-ID</th>
+                                <th>Email</th>
+                                <th>Response</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
 
-					<tbody>
-					<?php
+                        <tbody>
+                            <?php
 
-							foreach ($jsonlist as $out){
-								sleep(1);
-								flush();
-								ob_flush();
-								if ($out["status"] == "pass"){
-									$pf = "<td> <span class='btn btn-success btn-disabled btn-sm'>Pass</span></td>";
-								}else{
-									$pf = "<td> <span class='btn btn-danger btn-disabled btn-sm'>Fail</span></td>";
-								}
-								echo ("<tr>
-									<td scope='row'>".$out["fullname"]."</td>
-									<td >".$out["HNGId"]."</td>
-									<td >".$out["email"]."</td>
-									<td>".$out["output"]."</td>
+                            foreach ($jsonlist as $out) {
+                                sleep(1);
+                                flush();
+                                ob_flush();
+                                if ($out["status"] == "pass") {
+                                    $pf = "<td> <span class='btn btn-primary btn-disabled btn-sm'>Pass</span></td>";
+                                } else {
+                                    $pf = "<td> <span class='btn btn-danger btn-disabled btn-sm'>Fail</span></td>";
+                                }
+                                echo ("<tr>
+									<td scope='row'>" . $out["fullname"] . "</td>
+									<td >" . $out["HNGId"] . "</td>
+									<td >" . $out["email"] . "</td>
+									<td>" . $out["output"] . "</td>
 									.$pf.
 								</tr>");
-							}
+                            }
 
-						?>
-					
-                    </tbody>
-                </table>
+                            ?>
+
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
-  </body> 
-  <!-- Optional JavaScript -->
+    </body>
+    <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src='https://code.jquery.com/jquery-3.3.1.slim.min.js' integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo' crossorigin='anonymous'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js' integrity='sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1' crossorigin='anonymous'></script>
     <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js' integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM' crossorigin='anonymous'></script>
-</html>
-	
+
+    </html>
+
 <?php
 }
 ?>
-
