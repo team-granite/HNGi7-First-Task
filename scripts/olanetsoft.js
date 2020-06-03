@@ -5,7 +5,7 @@
 
 
 //defining the output
-let output = "Hello World, this is Idris Olubisi with HNGi7 ID HNG-01329 using javascript for stage 2 task";
+let output = "Hello World, this is Idris Olubisi with HNGi7 ID HNG-01329 using javascript for stage 2 task and heedris2olubisi@gmail.com";
 
 
 //defining the function to ou
