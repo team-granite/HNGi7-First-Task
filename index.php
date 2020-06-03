@@ -78,7 +78,7 @@ for ($counter = 0; $counter < count($nfiles); $counter++){
             <td scope='row'>".$name."</td>
             <td >".$id."</td>
             <td >".$email."</td>
-            <td>".$userString."</td>
+            <td>".$userStrings."</td>
             <td> <span class='btn btn-success btn-disabled btn-sm'>Pass</span></td>
         </tr>";
         $obj = [
@@ -98,7 +98,7 @@ for ($counter = 0; $counter < count($nfiles); $counter++){
             <td scope='row'>".$name."</td>
             <td >".$id."</td>
             <td >".$email."</td>
-            <td>".$userString."</td>
+            <td>".$userStrings."</td>
             <td> <span class='btn btn-failure btn-disabled btn-sm'>Fail</span></td>
         </tr>";
         $obj = [
