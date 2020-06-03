@@ -1,7 +1,7 @@
 <?php
 $identification = array(
 	"name" => "Ruberandinda Patience",
-	"hgn_id" => "05xxxx",
+	"hgn_id" => "HNG-05969",
 	"language" => "PHP"
 );
 
