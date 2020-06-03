@@ -1,4 +1,4 @@
-var fullName = "Ugwuoke, Ozioma Chinenye";
+var fullName = "Ugwuoke Ozioma";
 var HNGi7ID = "HNG-00610";
 var language = "JavaScript";
 var email = "oziomaonyishi4@gmail.com";
