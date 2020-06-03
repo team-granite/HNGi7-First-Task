@@ -5,7 +5,7 @@ const details = {"full name" : "Aniekan Inyang","ID" : "HNG-03943","language" : 
 
 // An arrow function that returns my details and language used
 const myIntro = ()=> {     
-    let introduction = `Hello World, this is ${details["full name"]} with HNGi7 ID ${details.ID} using ${details.language} for stage 2 task ${details.email} `;
+    let introduction = `Hello World, this is ${details["full name"]} with HNGi7 ID ${details.ID} using ${details.language} for stage 2 task `;
     return introduction;    
 }
 console.log(myIntro())
