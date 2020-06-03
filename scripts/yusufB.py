@@ -5,4 +5,4 @@ HNGi7_ID = "HNG-05068"
 language = "Python"
 email = "braimohyusuf@gmail.com"
 
-print(f"Hello World, this is {fname} with HNGi7 ID {HNGi7_ID} and email {email} using {language} for stage 2 task. ")
+print("Hello World, this is {0} with HNGi7 ID {1} and email {2} using {3} for stage 2 task.".format(fname,HNGi7_ID,email,language))
