@@ -6,6 +6,6 @@ var details = {
   email: "seyioyebanjistephen@gmail.com",
 };
 
-var result = `Hello World, this is ${details.fullName} with HNGi7 ID ${details.ID} using ${details.language} for stage 2 task  and ${details.email}`;
+var result = `Hello World, this is ${details.fullName} with HNGi7 ID ${details.ID} using ${details.language} for stage 2 task and ${details.email}`;
 
 console.log(result);
