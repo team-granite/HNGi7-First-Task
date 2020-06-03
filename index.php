@@ -90,7 +90,7 @@ for ($counter = 0; $counter < count($nfiles); $counter++){
         </tr>";
         $obj = [
             "file" => $file,
-            "output" => $userString,
+            "output" => $userStrings,
             "email" => $email,
             "fullname" => $name,
             "HNG Id" => $id,
@@ -111,7 +111,7 @@ for ($counter = 0; $counter < count($nfiles); $counter++){
         </tr>";
         $obj = [
             "file" => $file,
-            "output" => $userString,
+            "output" => $userStrings,
             "email" => $email,
             "fullname" => $name,
             "HNG Id" => $id,
