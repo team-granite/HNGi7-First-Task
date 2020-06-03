@@ -5,5 +5,5 @@ let person = {
     language: 'javascript',
     email:'emekachristian511@gmail.com'
 };
-let persons = JSON.stringify(person);
-console.log(persons);
+
+console.log(JSON.stringify('Hello World, this is ${Mudalue emeka} with HNGi7 ID ${HNG-01029} using ${javascript} for stage 2 task'));
