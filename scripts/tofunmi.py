@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
 import json
 my_data = {
-  "data": "Hello World, this is Adewole Jesutofunmi with HNGi7 ID HNG-03321 using Python for stage 2 task",
-  "email": "tofdebby@gmail.com",
-  "hng_id": "HNG-03321"
+  "data": "Hello World, this is Jesutofunmi Adewole with HNGi7 ID HNG-03321 using Python for stage 2 task and tofdebby@gmail.com"
 }
 
 def my_data_to_json():
