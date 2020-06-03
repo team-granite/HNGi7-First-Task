@@ -1,173 +1,119 @@
 <?php
 
-$json = $_SERVER["QUERY_STRING"] ?? '';
+$files = scandir("scripts");
 
-$files = scandir("scripts/");
+function filter_files($var){
+    $arr = [];
+    for ($counter = 0; $counter < count($var); $counter++){
+        $file = $var[$counter];
+        if (strlen($file) > 3){
+            array_push($arr,$file);
+        }           
+    }
+    return $arr;
+}
 
-unset($files[0]);
-unset($files[1]);
-unset($files[2]);
-$output = [];
-$outputJSON = [];
-$data = [];
-$passes = 0;
-$fails = 0;
-foreach ($files as $file) {
+$nfiles = filter_files($files);
 
-    $extension = explode('.', $file);
-
-    switch ($extension[1]) {
-        case 'php':
-            $startScript = "php";
-            break;
-        case 'js':
-            $startScript = "node";
-            break;
-        case 'py':
-            $startScript = "python";
-            break;
-        case 'dart':
-            $startScript = "dart";
-            break;
-        case 'java':
-            $startScript = "java";
-
-            exec("javac scripts/" . $file);
-            break;
-
-        default:
-            $startScript = "php";
-            break;
+$html = "";
+$json = [];
+for ($counter = 0; $counter < count($nfiles); $counter++){
+    $file = $nfiles[$counter];
+    $path_info = pathinfo($file);
+    if ($path_info["extension"] == "js"){
+        $ret = exec("node scripts/".$file." 2>&1 ", $output,$return_var);
+        
+    }
+    if ($path_info["extension"] == "py"){
+        $ret = exec("py scripts/".$file." 2>&1 ", $output,$return_var);
+        
+    }
+    if ($path_info["extension"] == "php"){
+        
+        $ret = exec("php scripts/".$file." 2>&1 ", $output,$return_var);
     }
 
-    $f = exec($startScript . " scripts/" . $file);
+	if (isset($output[0])){
+		$userStrings = strip_tags($output[0]);
+	}else{
+		$userStrings = "nothing returned";
+	}
 
-    @$data[$extension[0]]->content = $f;
-    $data[$extension[0]]->status = testFileContent($f);
-    $data[$extension[0]]->name = $extension[0];
-    $output[] = [$f, testFileContent($f), $extension[0]];
+	$detail = explode("and",$userStrings);
+	$userString = trim($detail[0]);
+	
+    
+    if (isset($detail[1])){
+        $email = $detail[1];
+    }else{
+		$email = "";
+	}
+    
+    
+    preg_match("/ [a-zA-Z]+ [a-zA-Z]+ with/", $userString,$matches);
+    preg_match("/ HNG-[0-9]+ using/", $userString,$matches2);
+    preg_match("/ [a-zA-Z]+ for/", $userString,$matches3);
+
+    if (isset($matches2[0])){
+        $id = substr($matches2[0],1,-6);
+    }else{
+		$id = "";
+	}
+    if (isset($matches[0])){
+        $name = substr($matches[0],1,-5);
+    }else{
+		$name = "";
+	}
+    if (isset($matches3[0])){
+        $language = substr($matches3[0],0,-3);
+    }else{
+		$language = "";
+	}
+
+
+	
+    if (preg_match("/^Hello World, this is [a-zA-Z]+ [a-zA-Z]+ with HNGi7 ID HNG-[0-9]+ using [a-zA-Z]+ for stage 2 task$/", $userString)){
+        $html = $html . "<p>". $userString . "<p> Status - Pass </p> \n";
+        $obj = [
+            "file" => $file,
+            "output" => $userString,
+            "email" => $email,
+            "fullname" => $name,
+            "HNG Id" => $id,
+            "language" => $language,
+            "status" => "pass"
+        ];
+		array_push($json,$obj);
+        $output = [];
+    }else {
+        $html = $html . "<p>". $userString . "<p> Status - Fail </p> \n";
+        $obj = [
+            "file" => $file,
+            "output" => $userString,
+            "email" => $email,
+            "fullname" => $name,
+            "HNG Id" => $id,
+            "language" => $language,
+            "status" => "fail"
+        ];
+		array_push($json,$obj);
+        $output = [];
+    }  
+   
 }
-$outputJSON = $data;
-
-function testFileContent($string)
-{
-    if (preg_match('/^Hello\sWorld[,|.|!]?\sthis\sis\s[a-zA-Z]{2,}\s[a-zA-Z]{2,}(\s[a-zA-Z]{2,})?\swith\sHNGi7\sID\s(HNG-\d{3,})\susing\s[a-zA-Z|#]{2,}\sfor\sstage\s2\stask.?$/i', trim($string))) {
-        return 'Pass';
-    }
-
-    return 'Fail';
+$json = json_encode($json);
+if (isset($_GET['json'])){
+    echo $json;
+}else{
+    echo $html;
 }
-
-foreach ($output as $val) {
-    if ($val[1] == 'Pass') {
-        $passes++;
-    } elseif ($val[1] == 'Fail') {
-        $fails++;
-    }
-}
-
-if (isset($json) && $json == 'json') {
-    echo json_encode($outputJSON);
-} else {
-    ?>
-    <html>
-
-    <head>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    </head>
-
-    <body>
-    <div class="container-fluid">
-        <nav class="navbar navbar-dark bg-dark fixed-top">
-                <span class="navbar-text">
-                    HNGi7 Team Sentry
-                </span>
-            <div class="float-right text-white">
-                <small>
-                    Leader: <span class="btn btn-sm btn btn-outline-primary">@E.U</span>
-                </small> &nbsp;
-                <small>
-                    FrontEnd: <span class="btn btn-sm btn btn-outline-success">@dona</span>
-                </small> &nbsp;
-                <small>
-                    DevOps: <span class="btn btn-sm btn btn-outline-info">@Fidele</span>
-                </small> &nbsp;
-            </div>
-        </nav>
-    </div>
-    <div class="container">
-        <div class="row" style="padding: 6em 0" class="text-center">
-            <div class="col-md-4">
-                <button type="button" class="btn">
-                    Submitted <span class="badge badge-primary"><?php echo ($passes + $fails)  ?></span>
-                </button>
-            </div>
-            <div class="col-md-4">
-                <button type="button" class="btn">
-                    Passes <span class="badge badge-success"><?php echo ($passes)  ?></span>
-                </button>
-            </div>
-            <div class="col-md-4">
-                <button type="button" class="btn">
-                    Fails <span class="badge badge-danger"><?php echo ($fails)  ?></span>
-                </button>
-            </div>
-        </div>
-        <table class="table table-hover center table-striped">
-            <thead class="thead-dark">
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Name</th>
-                <th scope="col">Message</th>
-                <th scope="col">Status</th>
-            </tr>
-            </thead>
-            <tbody>
-            <?php
-            $row = 0;
-            foreach ($output as $out) {
-
-                $status = $out[1] == 'Pass' ? 1 : 0;
-                if ($status) {
-                    echo <<<EOL
-                                <tr class="table-success">
-                                <th scope="row">$row</th>
-                                <td><b>$out[2]</b></td>
-                                <td>$out[0]</td>
-                                <td>$out[1] ✅</td>
-                                </tr>
-                             EOL;
-                }
-                else {
-                    echo <<<EOL
-                                <tr class="table-danger">
-                                <th scope="row">$row</th>
-                                <td><b>$out[2]</b></td>
-                                <td>$out[0]</td>
-                                <td>$out[1] ❌</td>
-                                </tr>
-                            EOL;
-                }
-                $row++;
-
-                flush();
-                ob_flush();
-
-                sleep(1); //used this to test the buffering
-
-            }
-            ?>
-
-            </tbody>
-        </table>
-
-
-    </div>
-
-    </body>
-
-    </html>
-    <?php
-}
-
 ?>
+
+
+
+
+
+
+
+
+
