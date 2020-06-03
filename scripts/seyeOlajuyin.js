@@ -1,2 +1,13 @@
-const seeData = `Hello World, this is Seye Olajuyin with HNGi7 ID HNG-02053 using JavaScript for stage 2 task and seyeolajuyinlive@gmail.com`;
-console.log(seeData);
+const myData = {
+  fullName: "Seye Olajuyin",
+  id: "HNG-02053",
+  email: "seyeolajuyinlive@gmail.com",
+  language: "JavaScript",
+};
+
+function myTask() {
+  return `Hello World, this is ${myData.fullName} with HNG ID ${myData.id} using ${myData.language} and ${myData.email}`;
+}
+
+console.log(myTask());
+
