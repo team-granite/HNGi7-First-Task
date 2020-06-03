@@ -5,6 +5,6 @@ details = {
 }
 
 def first_task():
-    return "Hello World, this is {} with HNG ID {} using python for stage 2 task and {}".format(details["name"], details["HNG ID"], details["email"])
+    return "Hello World, this is {} with HNGi7 ID {} using python for stage 2 task and {}".format(details["name"], details["HNG ID"], details["email"])
 
 print(first_task())
