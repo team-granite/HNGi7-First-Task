@@ -17,20 +17,27 @@ $nfiles = filter_files($files);
 
 $html = "";
 $json = [];
+$pass = 0;
+$fail = 0;
+$python = 0;
+$javascript = 0;
+$php = 0;
 for ($counter = 0; $counter < count($nfiles); $counter++){
     $file = $nfiles[$counter];
     $path_info = pathinfo($file);
     if ($path_info["extension"] == "js"){
-        $ret = exec("node scripts/".$file." 2>&1 ", $output,$return_var);
+		$ret = exec("node scripts/".$file." 2>&1 ", $output,$return_var);
+		$javascript++;
         
     }
     if ($path_info["extension"] == "py"){
-        $ret = exec("python scripts/".$file." 2>&1 ", $output,$return_var);
+		$ret = exec("python scripts/".$file." 2>&1 ", $output,$return_var);
+		$python++;
         
     }
     if ($path_info["extension"] == "php"){
-        
-        $ret = exec("php scripts/".$file." 2>&1 ", $output,$return_var);
+		$ret = exec("php scripts/".$file." 2>&1 ", $output,$return_var);
+		$php++;
     }
 
 	if (isset($output[0])){
@@ -91,6 +98,7 @@ for ($counter = 0; $counter < count($nfiles); $counter++){
             "status" => "pass"
         ];
 		array_push($json,$obj);
+		$pass++;
         $output = [];
     }else {
         $html = $html . 
@@ -99,7 +107,7 @@ for ($counter = 0; $counter < count($nfiles); $counter++){
             <td >".$id."</td>
             <td >".$email."</td>
             <td>".$userStrings."</td>
-            <td> <span class='btn btn-failure btn-disabled btn-sm'>Fail</span></td>
+            <td> <span class='btn btn-danger btn-disabled btn-sm'>Fail</span></td>
         </tr>";
         $obj = [
             "file" => $file,
@@ -111,6 +119,7 @@ for ($counter = 0; $counter < count($nfiles); $counter++){
             "status" => "fail"
         ];
 		array_push($json,$obj);
+		$fail++;
         $output = [];
     }  
    
@@ -133,6 +142,27 @@ if (isset($_GET['json'])){
     <div class='container p-5 text-center'>
         <h1>HNGi7 Team Granite </h1>
         <a href='?json' class='btn btn-dark btn-sm'>VIEW JSON</a>
+	</div>
+	<div class='card mt-5 p-4'>
+            <div class='row'>
+                <div class='col-1'></div>
+                <div class='col-2'>
+                    <span class='btn btn-success btn-disabled btn-sm btn-block'>".$pass. " Passed</span>
+                </div>
+                <div class='col-2'>
+                    <span class='btn btn-danger btn-disabled btn-sm btn-block'>".$fail. " Failed</span>
+                </div>
+                <div class='col-2'>
+                    <span class='btn btn-light btn-disabled btn-sm btn-block'>".$php. " PHP SCRIPT</span>
+                </div>
+                <div class='col-2'>
+                    <span class='btn btn-light btn-disabled btn-sm btn-block'>" .$javascript. " JavsScript</span>
+                </div>
+                <div class='col-2'>
+                    <span class='btn btn-light btn-disabled btn-sm btn-block'>".$python. " Python SCRIPT</span>
+                </div>
+            </div>
+        </div>
     </div>
     <div class='container mt-5 p-0'>
         <div class='row'>
