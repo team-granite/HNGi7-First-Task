@@ -1,1 +1,0 @@
-console.log("Hello World, this is Faith Edima Udoh with HNGi7 ID HNG-05995 using Javascript")
