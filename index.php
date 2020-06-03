@@ -34,13 +34,17 @@ for ($counter = 0; $counter < count($nfiles); $counter++){
     }
 
 	if (isset($output[0])){
-		$userString = strip_tags($output[0]);
+		$userStrings = strip_tags($output[0]);
 	}else{
-		$userString = "nothing returned";
+		$userStrings = "nothing returned";
 	}
+
+	$detail = explode("and",$userStrings);
+	$userString = trim($detail[0]);
+	
     
-    if (isset($output[1])){
-        $email = $output[1];
+    if (isset($detail[1])){
+        $email = $detail[1];
     }else{
 		$email = "";
 	}
@@ -65,11 +69,10 @@ for ($counter = 0; $counter < count($nfiles); $counter++){
     }else{
 		$language = "";
 	}
-    
-    
 
-   
-    if (preg_match("/^Hello World, this is [a-zA-Z]+ [a-zA-Z]+ with HNGi7 ID HNG-[0-9]+ using [a-zA-Z]+ for stage 2 task$/", $userString, $match)){
+
+	
+    if (preg_match("/^Hello World, this is [a-zA-Z]+ [a-zA-Z]+ with HNGi7 ID HNG-[0-9]+ using [a-zA-Z]+ for stage 2 task$/", $userString)){
         $html = $html . "<p>". $userString . "<p> Status - Pass </p> \n";
         $obj = [
             "file" => $file,
