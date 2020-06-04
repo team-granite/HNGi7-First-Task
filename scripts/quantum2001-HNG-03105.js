@@ -2,6 +2,6 @@ const info = "Hello World, this is Samuel Lawal with HNGi7 ID HNG-ID 03105 using
 
 function showInformation(){
 console.log(info);
-};
+}
 
 showInformation();
