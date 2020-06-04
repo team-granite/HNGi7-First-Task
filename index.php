@@ -23,7 +23,8 @@ $python = 0;
 $javascript = 0;
 $php = 0;
 for ($counter = 0; $counter < count($nfiles); $counter++) {
-    $file = $nfiles[$counter];
+	$file = $nfiles[$counter];
+	
     $path_info = pathinfo($file);
     if ($path_info["extension"] == "js") {
         $ret = exec("node scripts/" . $file . " 2>&1 ", $output, $return_var);
