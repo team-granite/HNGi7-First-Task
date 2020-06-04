@@ -9,4 +9,5 @@ function showRes (){
     console.log(profile);
 }
 
-showRes();
+ showRes();
+
