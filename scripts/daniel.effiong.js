@@ -1,6 +1,6 @@
 (function(){
 
-console.log("Hello World, this is Daniel Effiong with HNGi7 ID HNG-04163 using php for stage 2 task and danroyaleffiong@gmail.com");
+console.log("Hello World, this is Daniel Effiong with HNGi7 ID HNG-04163 using javascript for stage 2 task and danroyaleffiong@gmail.com");
 
 })();
 
