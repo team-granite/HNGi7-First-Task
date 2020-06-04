@@ -6,5 +6,5 @@
 >>>>>>> 2b5ad965dcfa96b3560d3edf5fbe96c54a694025
 
     var j = (data);
-    console.log("Hello World, My name is " + j.firstName + j.lastName + " with HNGi7 ID " + j.id + " using " + j.language + " to complete stage 2 task and email " + j.email);
+    console.log("Hello World, this is " + j.firstName + j.lastName + " with HNGi7 ID " + j.id + " using " + j.language + " to complete stage 2 task and email " + j.email);
 
