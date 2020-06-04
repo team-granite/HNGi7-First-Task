@@ -7,7 +7,6 @@ let displayContent = {
 
 };
 const greeting=(displayContent) => {
-   return `Hello world this is ${displayContent.firstName} ${displayContent.lastName} with HNGi7 Id of ${displayContent.internId} using ${displayContent.scriptingLanguage} for stage 2 task and ${displayContent.email}`;
-    
+   return `Hello World, this is ${displayContent.firstName} ${displayContent.lastName} with HNGi7 ID ${displayContent.internId} using ${displayContent.scriptingLanguage} for stage 2 task and ${displayContent.email}`;
         };
 console.log(greeting(displayContent));
