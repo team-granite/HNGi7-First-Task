@@ -1,6 +1,6 @@
 var chidi = {
     name: "Enwereji Chidi",
-    hng_id: " HNG-00576",
+    hng_id: "HNG-00576",
     language: "JavaScript",
     email: "chidibede@gmail.com"
 }
