@@ -5,5 +5,5 @@ var chidi = {
     email: "chidibede@gmail.com"
 }
 
-console.log("Hello World, this is " + chidi.name + " with HNGi7 ID " + chidi.hng_id + " using " + chidi.language + " for stage 2 task and email is " + chidi.email);
+console.log("Hello World, this is " + chidi.name + " with HNGi7 ID " + chidi.hng_id + " using " + chidi.language + " for stage 2 task and " + chidi.email);
 
