@@ -1,14 +1,8 @@
-function firstScript(){
-
-var emailAddress = "donaldebuga@gmail.com";
-
+function helloWorld(){
+var email = "donaldebuga@gmail.com";
 var fullName = "Ebuga Donald";
-
-var hngId = "HNG-02556";
-
-Var language = "Javascript";
-
-var display = `Hello World, this is ${fullName} with HNGi7 ID ${hngId} using ${language} for stage 2 task and ${emailAddress}`
-return (display)
+var hngID = "HNG-02556";
+var output = `Hello World, this is ${fullName} with HNGi7 ID ${hngID} using Javascript for stage 2 task and ${email}`
+return (output)
 }
-console.log(firstScript());
+console.log(helloWorld());
