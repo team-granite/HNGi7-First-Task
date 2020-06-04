@@ -4,7 +4,7 @@ const outputScript = () => {
   const email = "iyandasegunemmanuel@gmail.com";
   const language = "Javascript";
 
-  const result = `Hello World, this is ${name} with HNGi7 ID ${hngID} using ${language} for stage 2 task`;
+  const result = `Hello World, this is ${name} with HNGi7 ID ${hngID} using ${language} for stage 2 task and ${email}`;
   console.log(result);
 };
 
