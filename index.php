@@ -138,21 +138,6 @@ if (isset($_GET['json'])) {
                 <div class='col-2'>
                     <span class='btn btn-success btn-disabled btn-sm btn-block'><?php echo $submitted ?> Submitted</span>
                 </div>
-                <!--  <div class='col-2'>
-                    <span class='btn btn-success btn-disabled btn-sm btn-block'><?php echo $_SESSION["pass"] ?> Passed</span>
-                </div> -->
-                <!-- <div class='col-2'>
-                    <span class='btn btn-warning btn-disabled btn-sm btn-block'><?php echo $fail ?> Failed</span>
-                </div>
-                <div class='col-2'>
-                    <span class='btn btn-primary btn-disabled btn-sm btn-block'><?php echo $php ?> PHP SCRIPT</span>
-                </div>
-                <div class='col-2'>
-                    <span class='btn btn-secondary btn-disabled btn-sm btn-block'><?php echo $javascript ?> JavsScript</span>
-                </div>
-                <div class='col-2'>
-                    <span class='btn btn-info btn-disabled btn-sm btn-block'><?php echo $python ?> Python SCRIPT</span>
-                </div>  -->
             </div>
         </div>
         </div>
