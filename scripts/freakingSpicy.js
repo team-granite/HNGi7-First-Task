@@ -1,4 +1,3 @@
-
     var data = '{"firstName" : "Victoria ", "lastName" : "Adedayo", "id" : "HNG - 01723", "email" : "adedayovicky123@gmail.com","language" : "Javascript"}';
 
     var j = JSON.parse(data);
