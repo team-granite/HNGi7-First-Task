@@ -79,11 +79,11 @@ for ($counter = 0; $counter < count($nfiles); $counter++) {
 
 
 	
-    if (preg_match("/^Hello World, this is [a-zA-Z]+ [a-zA-Z]+ with HNGi7 ID HNG-[0-9]+ using [a-zA-Z]+ for stage 2 task$/", $userString)){
+    if (preg_match("/^Hello World, this is [A-Za-z]+([\ A-Za-z]+)* with HNGi7 ID HNG-[0-9]+ using [a-zA-Z]+ for stage 2 task$/", $userString)){
 
         $obj = [
             "file" => $file,
-            "output" => $userStrings,
+            "output" => $userString,
             "email" => $email,
             "fullname" => $name,
             "HNGId" => $id,
@@ -98,7 +98,7 @@ for ($counter = 0; $counter < count($nfiles); $counter++) {
 
         $obj = [
             "file" => $file,
-            "output" => $userStrings,
+            "output" => $userString,
             "email" => $email,
             "fullname" => $name,
             "HNGId" => $id,
