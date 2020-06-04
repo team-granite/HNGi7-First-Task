@@ -1,3 +1,7 @@
-
-//writting information to the console page
-console.log("Hello World, this is Adeoye Saheed with HNGi7 ID HNG-03123 using Javascript for stage 2 task and adeoye233@gmail.com");
+// declaring variables
+var name = "Adeoye Saheed";
+var HNGid = "HNG-03123";
+var lan = "Javascript";
+var mail = "adeoye233@gmail.com";
+//writting information to the consoile page
+console.log("Hello World, this is " +name+ " with HNGi7 ID " +HNGid+ " using " +lan+ " for stage 2 task " + "and "+mail);
