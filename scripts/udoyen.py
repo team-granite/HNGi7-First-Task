@@ -4,11 +4,6 @@ import  json
 import sys
 
 bio_data = "Hello World, this is George Udosen with HNGi7 ID HNG-05073 using Python for stage 2 task and datameshprojects@gmail.com"
-user_info =  {
-    "data":"Hello World, this is George Udosen with HNGi7 ID HNG-05073 using Python for stage 2 task",
-    "email": "datameshprojects@gmail.com",
-    "hng_id": "HNG-05073"
-        }
 
 print(bio_data)
 
