@@ -1,12 +1,9 @@
-function myInfo() {
-    var fullname = 'Ephraim Ibatt'
-    var myID = 'HNG-03519'
-    var launguage ='JavaScript'
-    var email = 'aniekanephraim@gmail.com'
-
-    let output;
-    output = `Hello World, this is ${myInfo.fullname} with HNG ID ${myInfo.myID} using ${myInfo.launguage} and ${myInfo.email}`
-
-    
-}
-console.log(output)
+var myInfo = `{
+    "fullname":  "Ephraim Ibatt",
+    "myID": "HNG-03519",
+    "launguage": "Javascript",
+    "email": "aniekanephraim@gmail.com"
+  }`;
+  var json = JSON.parse(myInfo);
+    output = `Hello World, this is ${json.fullname} with HNGi7 ID ${json.myID} using ${json.launguage} for stage 2 task and ${json.email}`
+  console.log(output);
