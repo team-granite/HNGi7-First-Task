@@ -184,9 +184,9 @@ if (isset($_GET['json'])) {
 								flush();
 								ob_flush();
 								if ($out["status"] == "pass"){
-									$pf = "<td> <span class='btn btn-success btn-disabled btn-sm'>Pass</span></td>";
+									$pf = "<td> <span class='btn btn-success btn-disabled btn-sm btn-blocked'>Pass</span></td>";
 								}else{
-									$pf = "<td> <span class='btn btn-danger btn-disabled btn-sm'>Fail</span></td>";
+									$pf = "<td> <span class='btn btn-danger btn-disabled btn-sm btn-blocked'>Fail</span></td>";
 								}
 								echo ("<tr>
 									<td scope='row'>".$out["fullname"]."</td>
