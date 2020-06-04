@@ -8,10 +8,10 @@ data = {
 
 
 def task_one():
-    return "Hello World, this is {} with HNG ID {} using {} for stage 2 task and {}".format(data["name"],
-                                                                                            data["HNG-ID"],
-                                                                                            data["language"],
-                                                                                            data["email"])
+    return "Hello World, this is {} with HNGi7 ID {} using {} for stage 2 task and {}".format(data["name"],
+                                                                                              data["HNG-ID"],
+                                                                                              data["language"],
+                                                                                              data["email"])
 
 
 print(task_one())
