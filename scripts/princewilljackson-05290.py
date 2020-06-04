@@ -1,13 +1,8 @@
-name = "Princewill Jackson"
-ID =  "HNG-05290"
-email = "princewilljackson@ymail.com"
-language = "Python"
-
-my_output = f"Hello World, this is {name} with HNGi7 ID {ID} using {language} for stage 2 task and {email}"
+my_output = "Hello World, this is Princewill Jackson with HNGi7 ID HNG-05290 using Python for stage 2 task and princewilljackson@ymail.com"
 
 def my_script():
     """Displays output variable."""
-    print(my_output)
+    return my_output
 
 
-my_script()
+print(my_script())
