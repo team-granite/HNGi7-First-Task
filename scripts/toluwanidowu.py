@@ -3,7 +3,7 @@ import json
 data = {
     "name": "Idowu Toluwani",
     "ID": "HNG-04337",
-    "Language": "C#",
+    "Language": "CSharp",
     "email": "toluwanieaidowu@gmail.com"
 }
 
