@@ -1,6 +1,6 @@
 {
     "name": "Team-Granite",
-    "description": "a really cool app",
+    "description": "Executing scripts",
     "version": "1.0.0",
     "engines": {
         "node": "12.16.3"
