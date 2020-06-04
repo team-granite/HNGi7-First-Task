@@ -8,7 +8,7 @@ const myData = {
 
 
 const showInfo = ({firstName, lastName, email, internId, scriptingLanguage})=>{
-    const info = `Hello World, this is ${firstName} ${lastName} with HNGi7 ID of ${internId} using ${scriptingLanguage} for stage 2 task and ${email}`;
+    const info = `Hello World, this is ${firstName} ${lastName} with HNGi7 ID ${internId} using ${scriptingLanguage} for stage 2 task and ${email}`;
     return info;
 }
 
