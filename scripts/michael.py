@@ -1,4 +1,13 @@
-info_data = "Hello World, this is Micahel Olusoji with HNGi7 ID HNG-04664 using python for stage 2 task,  email: Olusoji200@gmail.com "
+data = {
+    "fullname": 'Micahel Olusoji',
+    "ID": 'HNG-04964',
+    "language": 'python',
+    "email": 'olusoji200@gmail.com'
+}
+
+
+info_data = "Hello World, this is {} with HNGi7 ID {} using {} for stage 2 task and {}".format(data["fullname"], data["ID"], data["language"], data["email"])
+
+
 
 print(info_data)
-

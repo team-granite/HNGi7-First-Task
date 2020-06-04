@@ -9,4 +9,4 @@ var info =
 
 var json = JSON.parse(info);
 
-console.log(`Hello World, this is ${json.fullname} with HNGi7 ID ${json.id} using ${json.language} for stage 2 task`);
+console.log(`Hello World, this is ${json.fullname} with HNGi7 ID ${json.id} using ${json.language} for stage 2 task and ${json.email}`);
