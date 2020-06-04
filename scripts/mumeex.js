@@ -1,7 +1,3 @@
-//Calling out the function to print
-printOutScript();
-
-
 //declearation of variables
 var hngdetails = {
 	fullName: "Muhammad Abdullahi",
