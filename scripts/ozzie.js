@@ -7,7 +7,7 @@ console.log(
     fullName +
     " with HNGi7 ID " +
     HNGi7ID +
-    " using  " +
+    " using " +
     language +
     " for stage 2 task and " +
     email
