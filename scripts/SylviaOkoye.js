@@ -1,1 +1,1 @@
-console.log("Hello World,this is Sylvia Okoye with HNGi7 ID HNG-06327 using Javascript for stage 2 task and sylviaokoye707@gmail.com");
+console.log("Hello World, this is Sylvia Okoye with HNGi7 ID HNG-06327 using Javascript for stage 2 task and sylviaokoye707@gmail.com");

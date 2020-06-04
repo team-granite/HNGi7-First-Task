@@ -3,5 +3,8 @@
 
 **/tempCodeRunnerFile*
 
-/vendor/
-sftp-config.json
+.vscode/*
+.vscode
+
+debug.log
+
