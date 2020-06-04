@@ -1,11 +1,7 @@
-const displayInfo = (function () {
-  let myName = "Emmanuel Igwe";
-  let hngId = "HNG-06162";
-  let ProgramLanguage = "javascript";
-  let Email = "emmanuel.igwe38@gmail.com";
-  return function () {
-    console.log(` Hello World, this is ${myName} with HNGi7 ID ${hngId} using ${ProgramLanguage}
-    for stage 2 task and ${Email}`);
-  };
-})();
+const displayInfo = function () {
+  let myPersonalInfo =
+    "Hello World, this is Emmanuel Igwe with HNGi7 ID HNG-06162 using javascript for stage 2 task and emmanuel.igwe38@gmail.com";
+
+  console.log(myPersonalInfo);
+};
 displayInfo();
