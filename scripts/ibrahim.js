@@ -1,9 +1,15 @@
-function printMessage() {
-    var message = { data: 'Hello world, this is Falola Ibrahim with HNGi7 ID HNG-03833 using javascript for stage 2 task', email: 'ayofalola240@gmail.com', hng_id: 'HNG-03833' }
 
-    var myJSON = JSON.stringify(message);
+let person = {
+    fullName: "Falola Ibrahim",
+    hngID: "HNG-03833",
+    progLanguage: "javascript",
+    email: "ayofalola240@gmail.com"
+};
+let cl = console.log;
 
-    return myJSON
 
-}
-printMessage()
+const printOutput = () => {
+    cl(`Hello World, this is ${person.fullName} with HNGi7 ID ${person.hngID} using ${person.progLanguage} for stage 2 task  and ${person.email}`);
+};
+
+printOutput();
