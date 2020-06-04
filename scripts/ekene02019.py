@@ -1,0 +1,2 @@
+myInfo = {"name":"Ekene Chukwurah", "id":"HNG-02019","email":"echukwurah99@gmail.com","language":"Python"}
+print(("Hello World, this is {} with HNGi7 ID {} using {} for stage 2 task and {}").format(myInfo["name"], myInfo["id"], myInfo["language"], myInfo["email"]))
