@@ -8,6 +8,6 @@ HNGID = " with HNGi7 ID " + ID
 
 def myfunc():
 
-	print( Introduction + HNGID + " using " + Language + " for stage 2 task")
+	print( Introduction + HNGID+ " and " + email + " using " + Language + " for stage 2 task")
 
 myfunc()
