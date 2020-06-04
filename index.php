@@ -26,7 +26,7 @@ for ($counter = 0; $counter < count($nfiles); $counter++) {
     $file = $nfiles[$counter];
     $path_info = pathinfo($file);
     if ($path_info["extension"] == "js") {
-        $ret = exec("node scripts/" . $file . " 2>&1 ", $output, $return_var);
+        $ret = exec('node' . ' scripts/' . $file . " 2>&1 ", $output, $return_var);
         $javascript++;
     }
     if ($path_info["extension"] == "py") {
