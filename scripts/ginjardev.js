@@ -5,6 +5,6 @@ let internData = {
     "email": "arthurshur@gmail.com"
 };
 
-const internDetails = () => console.log(`Hello World, this is ${internData['fullName']} with HNGi7 ID ${internData['hngId']} and email ${internData['email']} using ${internData['language']} for stage 2 task`);
+const internDetails = () => `Hello World, this is ${internData['fullName']} with HNGi7 ID ${internData['hngId']} and email ${internData['email']} using ${internData['language']} for stage 2 task`;
 
 console.log(internDetails());
