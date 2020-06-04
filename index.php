@@ -58,7 +58,9 @@ for ($counter = 0; $counter < count($nfiles); $counter++) {
 
     preg_match("/ [a-zA-Z]+ [a-zA-Z]+ with/", $userString, $matches);
     preg_match("/ HNG-[0-9]+ using/", $userString, $matches2);
-    preg_match("/ [a-zA-Z]+ for/", $userString, $matches3);
+	preg_match("/ [a-zA-Z]+ for/", $userString, $matches3);
+	preg_match('/\s?(([\w+\.\-]+)@([\w+\.\-]+)\.([a-zA-Z]{2,5}))/i', trim($email) , $matches4);
+	
 
     if (isset($matches2[0])) {
         $id = substr($matches2[0], 1, -6);
@@ -74,7 +76,13 @@ for ($counter = 0; $counter < count($nfiles); $counter++) {
         $language = substr($matches3[0], 0, -3);
     } else {
         $language = "";
-    }
+	}
+	if (isset($matches4[0])) {
+        $email = $matches4[0];
+    } else {
+        $email = "";
+	}
+	
 
 
 
