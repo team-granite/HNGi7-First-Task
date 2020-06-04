@@ -1,7 +1,7 @@
 # HNGi7-First-Task
 
 ## Link to the Live Server
-<!-- http://34.69.193.111/index.php -->
+http://34.69.193.111/index.php
 
 ## Useful Links
 
