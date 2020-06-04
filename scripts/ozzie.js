@@ -1,13 +1,13 @@
-var fullName = "Ugwuoke, Ozioma Chinenye";
-var HNGi7ID = "HNG-00610";
+var fullName = "Ugwuoke Ozioma";
+var hngid = "HNG-00610";
 var language = "JavaScript";
 var email = "oziomaonyishi4@gmail.com";
 console.log(
-  "Hello world, this is " +
+  "Hello World, this is " +
     fullName +
     " with HNGi7 ID " +
-    HNGi7ID +
-    " using  " +
+    hngid +
+    " using " +
     language +
     " for stage 2 task and " +
     email

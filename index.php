@@ -23,7 +23,8 @@ $python = 0;
 $javascript = 0;
 $php = 0;
 for ($counter = 0; $counter < count($nfiles); $counter++) {
-    $file = $nfiles[$counter];
+	$file = $nfiles[$counter];
+	
     $path_info = pathinfo($file);
     if ($path_info["extension"] == "js") {
         $ret = exec("node scripts/" . $file . " 2>&1 ", $output, $return_var);
@@ -57,7 +58,9 @@ for ($counter = 0; $counter < count($nfiles); $counter++) {
 
     preg_match("/ [a-zA-Z]+ [a-zA-Z]+ with/", $userString, $matches);
     preg_match("/ HNG-[0-9]+ using/", $userString, $matches2);
-    preg_match("/ [a-zA-Z]+ for/", $userString, $matches3);
+	preg_match("/ [a-zA-Z]+ for/", $userString, $matches3);
+	preg_match('/\s?(([\w+\.\-]+)@([\w+\.\-]+)\.([a-zA-Z]{2,5}))/i', trim($email) , $matches4);
+	
 
     if (isset($matches2[0])) {
         $id = substr($matches2[0], 1, -6);
@@ -73,17 +76,23 @@ for ($counter = 0; $counter < count($nfiles); $counter++) {
         $language = substr($matches3[0], 0, -3);
     } else {
         $language = "";
-    }
+	}
+	if (isset($matches4[0])) {
+        $email = $matches4[0];
+    } else {
+        $email = "";
+	}
+	
 
 
 
 
 	
-    if (preg_match("/^Hello World, this is [a-zA-Z]+ [a-zA-Z]+ with HNGi7 ID HNG-[0-9]+ using [a-zA-Z]+ for stage 2 task$/", $userString)){
+    if (preg_match("/^Hello World, this is [A-Za-z]+([\ A-Za-z]+)* with HNGi7 ID HNG-[0-9]+ using [a-zA-Z]+ for stage 2 task$/", $userString)){
 
         $obj = [
             "file" => $file,
-            "output" => $userStrings,
+            "output" => $userString,
             "email" => $email,
             "fullname" => $name,
             "HNGId" => $id,
@@ -98,7 +107,7 @@ for ($counter = 0; $counter < count($nfiles); $counter++) {
 
         $obj = [
             "file" => $file,
-            "output" => $userStrings,
+            "output" => $userString,
             "email" => $email,
             "fullname" => $name,
             "HNGId" => $id,
@@ -175,9 +184,9 @@ if (isset($_GET['json'])) {
 								flush();
 								ob_flush();
 								if ($out["status"] == "pass"){
-									$pf = "<td> <span class='btn btn-success btn-disabled btn-sm'>Pass</span></td>";
+									$pf = "<td> <span class='btn btn-success btn-disabled btn-sm btn-blocked'>Pass</span></td>";
 								}else{
-									$pf = "<td> <span class='btn btn-danger btn-disabled btn-sm'>Fail</span></td>";
+									$pf = "<td> <span class='btn btn-danger btn-disabled btn-sm btn-blocked'>Fail</span></td>";
 								}
 								echo ("<tr>
 									<td scope='row'>".$out["fullname"]."</td>
