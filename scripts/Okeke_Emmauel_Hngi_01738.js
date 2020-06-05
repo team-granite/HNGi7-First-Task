@@ -4,4 +4,4 @@ var internName="Okeke Emmanuel"
 var internId="HNG-01738"
 var internLanguage="JavaScript"
 var internEmail="ceomaobi@gmail.com"
-console.log("Hello world this is ${internName} with HNGi7 ID ${internId} using ${intern Language} for stage two task ${internEmail}")
+console.log("Hello world this is ${internName} with HNGi7 ID ${internId} using ${internLanguage} for stage two task and ${internEmail}")
