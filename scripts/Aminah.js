@@ -1,0 +1,1 @@
+console.log("Hello World, this is Aminah Kelani with HNGi7 ID HNG-05765 using javascript for stage 2 task and atkelani@gmail.com")
