@@ -130,7 +130,7 @@ if (isset($_GET['json'])) {
             const filterChange = result =>{
                 let people = document.querySelectorAll("tr");
                 people.forEach( person => {
-                    if(person.children[0].textContent.includes(result.value) || person.children[0].textContent.includes("Full Name")){
+                    if(person.children[0].textContent.toLowerCase().includes(result.value.toLowerCase()) || person.children[0].textContent.includes("Full Name")){
                         person.classList.remove("hidden");
                     }else{
                         person.classList.add("hidden");
