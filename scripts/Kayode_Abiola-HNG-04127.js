@@ -1,0 +1,1 @@
+console.log("Hello World, this is Kayode Abiola with HNGi7 ID HNG-04127 using JavaScript for stage 2 task");
