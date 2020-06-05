@@ -6,7 +6,7 @@ let my_details = {
 }
 
 function output() {
-	return `Hello World, this is ${my_details.fullname} with HNGi7 ID ${my_details.id} using ${my_details.language} for stage 2 task`;
+	return `Hello World, this is ${my_details.fullname} with HNGi7 ID ${my_details.id} using ${my_details.language} for stage 2 task and elozino1@gmail.com`;
 }
 
 console.log(output());
