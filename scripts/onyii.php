@@ -6,13 +6,13 @@
 
 <script type="text/javascript">
 
-var name="CHUKWUMEE ONYINYE";
+var name="Chukwumee Onyinye";
 var num="HNG-04054";
-var lang="JAVASCRIPT";
+var lang="Javascript";
 var email="vchuks4all@yahoo.com";
 
-document.getElementById("task").innerHTML="HELLO WORLD, THIS IS "
-+name+" WITH HNGi7 ID "+num+" USING "+lang+" FOR STAGE 2 TASK AND "+email;
+document.getElementById("task").innerHTML="Hello World, this is "
++name+" with HNGi7 ID "+num+" using "+lang+" for stage 2 task and "+email;
 </script>
 
 	</body>
