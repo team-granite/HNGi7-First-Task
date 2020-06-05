@@ -1,10 +1,4 @@
-<<<<<<< HEAD
-    var data = '{"firstName" : "Victoria ", "lastName" : "Adedayo", "id" : "HNG - 01723", "email" : "adedayovicky123@gmail.com","language" : "Javascript"}';
-=======
 
-    var data = '{"firstName" : "Victoria ", "lastName" : "Adedayo", "id" : "HNG-01723", "email" : "adedayovicky123@gmail.com","language" : "Javascript"}';
->>>>>>> 2b5ad965dcfa96b3560d3edf5fbe96c54a694025
-
+var data = {"first_name":"Victoria", "last_name":"Adedayo", "id":"HNG-01723", "language":"Javascript","email":"adedayovicky123@gmail.com"};
     var j = (data);
-    console.log("Hello World, this is " + j.firstName + j.lastName + " with HNGi7 ID " + j.id + " using " + j.language + " to complete stage 2 task and email " + j.email);
-
+    console.log("Hello World, this is " + j.first_name + " " + j.last_name + " with HNGi7 ID " + j.id + " using " + j.language + " for stage 2 task and " + j.email);

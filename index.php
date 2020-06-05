@@ -60,22 +60,22 @@ if (isset($_GET['json'])) {
 
 
         if (isset($matches2[0])) {
-            $id = substr($matches2[0], 1, -6);
+            $id = trim(substr($matches2[0], 1, -6));
         } else {
             $id = "";
         }
         if (isset($matches[0])) {
-            $name = substr($matches[0], 1, -5);
+            $name = trim(substr($matches[0], 1, -5));
         } else {
             $name = "";
         }
         if (isset($matches3[0])) {
-            $language = substr($matches3[0], 0, -3);
+            $language = trim(substr($matches3[0], 0, -3));
         } else {
             $language = "";
         }
         if (isset($matches4[0])) {
-            $email = $matches4[0];
+            $email = trim($matches4[0]);
         } else {
             $email = "";
         }
@@ -167,19 +167,26 @@ if (isset($_GET['json'])) {
                                     continue;
                                 }
 
-
+                                
                                 $path_info = pathinfo($file);
+                        
+                                if (!$path_info["extension"]) {
+                                    continue;
+                                }
+                                   
                                 if ($path_info["extension"] == "js") {
                                     $ret = exec("node scripts/" . $file . " 2>&1 ", $output, $return_var);
                                     $GLOBALS['javascript']++;
                                 }
-                                if ($path_info["extension"] == "py") {
+                                else if ($path_info["extension"] == "py") {
                                     $ret = exec("python scripts/" . $file . " 2>&1 ", $output, $return_var);
                                     $GLOBALS['python']++;
                                 }
-                                if ($path_info["extension"] == "php") {
+                                else if ($path_info["extension"] == "php") {
                                     $ret = exec("php scripts/" . $file . " 2>&1 ", $output, $return_var);
                                     $GLOBALS['php']++;
+                                }else {
+                                    continue;
                                 }
 
                                 if (isset($output[0])) {
