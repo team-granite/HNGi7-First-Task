@@ -13,7 +13,7 @@ var eben = new Person(
 );
 function task(person) {
   console.log(
-    `Hello World, this is ${person.fullName} with HNGi7 ID ${person.ID} using ${person.language} for stage 2 task`
+    `Hello World, this is ${person.fullName} with HNGi7 ID ${person.ID} using ${person.language} for stage 2 task and ${person.email}`
   );
 }
 task(eben);
