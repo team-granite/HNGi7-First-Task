@@ -167,19 +167,26 @@ if (isset($_GET['json'])) {
                                     continue;
                                 }
 
-
+                                
                                 $path_info = pathinfo($file);
+                        
+                                if (!$path_info["extension"]) {
+                                    continue;
+                                }
+                                   
                                 if ($path_info["extension"] == "js") {
                                     $ret = exec("node scripts/" . $file . " 2>&1 ", $output, $return_var);
                                     $GLOBALS['javascript']++;
                                 }
-                                if ($path_info["extension"] == "py") {
+                                else if ($path_info["extension"] == "py") {
                                     $ret = exec("python scripts/" . $file . " 2>&1 ", $output, $return_var);
                                     $GLOBALS['python']++;
                                 }
-                                if ($path_info["extension"] == "php") {
+                                else if ($path_info["extension"] == "php") {
                                     $ret = exec("php scripts/" . $file . " 2>&1 ", $output, $return_var);
                                     $GLOBALS['php']++;
+                                }else {
+                                    continue;
                                 }
 
                                 if (isset($output[0])) {
