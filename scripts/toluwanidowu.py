@@ -9,5 +9,5 @@ data = {
 
 y = json.dumps(data)
 
-print("Hello World, this is " + data['name'] + " with HNGi7 ID" + data['ID'] + " using " + data['Language'] + 
+print("Hello World, this is " + data['name'] + " with HNGi7 ID " + data['ID'] + " using " + data['Language'] + 
 " for stage 2 task and email " + data['email'] + " ." )
