@@ -5,5 +5,5 @@ const myCredentials = {
   email: 'rasheedrtm1@gmail.com',
 };
 
-let firstFinalResult = `Hello World, this is ${myCredentials.fullName} with HNGi7_ID: ${myCredentials.HNGID} using ${myCredentials.language} for stage 2 task and ${myCredentials.email}`;
+let firstFinalResult = `Hello World, this is ${myCredentials.fullName} with HNGi7 ID ${myCredentials.HNGID} using ${myCredentials.language} for stage 2 task and ${myCredentials.email}`;
 console.log(firstFinalResult);
