@@ -60,22 +60,22 @@ if (isset($_GET['json'])) {
 
 
         if (isset($matches2[0])) {
-            $id = substr($matches2[0], 1, -6);
+            $id = trim(substr($matches2[0], 1, -6));
         } else {
             $id = "";
         }
         if (isset($matches[0])) {
-            $name = substr($matches[0], 1, -5);
+            $name = trim(substr($matches[0], 1, -5));
         } else {
             $name = "";
         }
         if (isset($matches3[0])) {
-            $language = substr($matches3[0], 0, -3);
+            $language = trim(substr($matches3[0], 0, -3));
         } else {
             $language = "";
         }
         if (isset($matches4[0])) {
-            $email = $matches4[0];
+            $email = trim($matches4[0]);
         } else {
             $email = "";
         }
