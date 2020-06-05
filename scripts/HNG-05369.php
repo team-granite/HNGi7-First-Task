@@ -1,8 +1,8 @@
-<?php 
-$full_name = 'Temilola Onifade';
-$hng_id = 'HNG-05369';
-$language = 'PHP';
-$email = 'temmieonifade@gmail.com';
+<?php
+$output = "Hello World, this is Temilola Onifade with HNGi7 ID HNG-05369 using PHP for stage 2 task and temmieonifade@gmail.com";
 
-echo 'Hello World, this is ' .$full_name . ' with HNGi7 ID ' .$hng_id . ' using ' .$language .' for stage 2 task and this is my email address ' .$email ;
+if(defined('STDIN') || PHP_SAPI === 'cli')
+    fwrite(STDOUT, $output);
+else
+    echo $output;
 ?>
