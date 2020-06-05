@@ -5,6 +5,7 @@ HNGID = " HNG-05788"
 Language = "Python"
 email ="okolonathanchinedu@gmail.com"
 def script():
-    print(f"Hello World, this is {Name} with HNGi7 ID {HNGID} using {Language} for stage 2 task and {email}")
+    print("Hello World, this is {0} with HNGi7 ID {1} using {2} for stage 2 task and {3}".format(
+    Name, HNGID,Language, email))
 
 script()
