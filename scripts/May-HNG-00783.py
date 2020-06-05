@@ -15,7 +15,7 @@ def myfunc():
 
 
 
-	print( "Hello World, this is " +  fullname + " with HNGi7 " + ID + " using " + Language + " for stage 2 task" + " and" + email )
+	print( "Hello World, this is " +  fullname + " with HNGi7 " + ID + " using " + Language + " for stage 2 task" + " and " + email )
 
 
 
