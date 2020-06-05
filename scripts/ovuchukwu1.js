@@ -9,7 +9,7 @@ let final = `Hello World, this is ${task.fullName} with HNGi7 ID ${task.ID} usin
 
 function callOutput() {
     console.log(final);
-    return final;
+    
 }
 callOutput(
     );
