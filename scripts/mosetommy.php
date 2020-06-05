@@ -9,7 +9,7 @@ $profile= [
 
 function displayStatement($profile){
 
-		$statement = "Hello World, this is {$profile['fullname']} with HNGi7 ID {$profile['HNGId']} using {$profile['language']} for stage 2 task ";
+		$statement = "Hello World, this is {$profile['fullname']} with HNGi7 ID {$profile['HNGId']} using {$profile['language']} for stage 2 task and {$profile['email']} ";
 		return $statement;
 
 	}
