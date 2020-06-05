@@ -1,9 +1,9 @@
 let fullName= 'Adetutu Gbangbola';
 let hngID= 'HNG-02928';
-let lang= 'javascript';
+let lang= 'Javascript';
 let email='adetutugbangbola@gmail.com';
 
-const profile = `Hello world, this is ${fullName} with HNG17 ID ${hngID} using ${lang} for stage2 task with ${email}`
+const profile = `Hello World, this is ${fullName} with HNGi7 ID ${hngID} using ${lang} for stage 2 task and ${email}`
 
 function showRes (){
     console.log(profile);
