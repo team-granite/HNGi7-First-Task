@@ -1,16 +1,14 @@
-  
 <?php
-$intern = "Amusa Quadri";
-$hng_id = "HNG-050709";
-$language = "PHP";
-$email = "amusaabiodun88@gmail.com";
-
-
-function show_details(){ 
-    global $intern, $hng_id, $language, $email;
-    return "Hello World, this is $intern with HNGi7 ID $hng_id using $language for stage 2 task";
-}
-
-echo show_details();
+$intern_info= [
+			'fullname'=>'Amusa Quadri Abiodun',
+			'email'=>'amusaabiodun88@gmail.com',
+			'HNGId'=>'HNG-050709',
+			'language'=>'PHP'
+			];
+                    function displayStatement($intern_info){
+		$statement = "Hello World, this is {$intern_info['fullname']} with HNGi7 ID {$intern_info['HNGId']} using {$intern_info['language']} for stage 2 task ";
+		return $statement;
+	}
+	echo displayStatement($intern_info);
 ?>
 
