@@ -3,7 +3,7 @@
 
 
 
-fullname, ID, Language ="Mariam Bakre", "HNG-00783", "python"
+fullname, id, language ="Mariam Bakre", "HNG-00783", "python"
 
 email = "masateke@gmail.com"
 
@@ -15,7 +15,7 @@ def myfunc():
 
 
 
-	print( "Hello World, this is " +  fullname + " with HNGi7 " + ID + " using " + Language + " for stage 2 task" + " and " + email )
+	print( "Hello World, this is " +  fullname + " with HNGi7 ID " + id + " using " + language + " for stage 2 task and " + email )
 
 
 
