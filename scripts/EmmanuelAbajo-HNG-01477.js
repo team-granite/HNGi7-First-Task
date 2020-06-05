@@ -1,5 +1,5 @@
 const detail = {
-    fullName: 'Emmanuel Kehinde-Abajo',
+    fullName: 'Emmanuel Abajo',
     id: 'HNG-01477',
     language: 'Javascript',
     email: 'temiabajo@gmail.com',
