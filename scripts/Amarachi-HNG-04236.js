@@ -4,7 +4,7 @@ let language = 'Javascript';
 let email = "amarachiogbo19@gmail.com";
 
 console.log('Hello World, this is ' + 
-fullName, + 
+fullName + 
 ' HNGi7 ID ' +
  ID + 
 ' using ' +
