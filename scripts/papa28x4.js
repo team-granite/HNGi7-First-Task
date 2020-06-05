@@ -1,6 +1,6 @@
 const greetings=()=>{
     const intern = {
-        "name": "Ekeoma Ebiri-Okoro",
+        "name": "Ekeoma EbiriOkoro",
         "id":"HNG-02752",
         "language":"JavaScript",
         "email":"swissfair@yahoo.co.uk",
