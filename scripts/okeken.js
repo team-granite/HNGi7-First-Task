@@ -3,7 +3,7 @@ let fullName = 'Oke Kehinde',
   language = 'Javascript',
   email = 'okekehinde@gmail.com';
 
-let outputStatement = `Hi there, this is ${fullName}, with the HNG ID:${id}, using ${language} for stage 2 and ${email}`;
+let outputStatement = `Hello World, this is ${fullName} with HNGi7 ID ${id} using ${language} for stage 2 task and ${email}`;
 
 outputFunc = () => {
   console.log(outputStatement);
