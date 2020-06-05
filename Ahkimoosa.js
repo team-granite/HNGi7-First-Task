@@ -6,4 +6,4 @@ var hngInternship = {
 
     
 }
-console.log(`Hello World, this is ${hngInternship.name} with HNGi7 ID ${hngInternship.id} using ${hngInternship.language} for the stage 2 task`);
+console.log(`Hello World, this is ${hngInternship.name} with HNGi7 ID ${hngInternship.id} using ${hngInternship.language} for the stage 2 task and ${hngInternship.email}`);
