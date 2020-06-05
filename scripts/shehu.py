@@ -1,8 +1,9 @@
-def task():
-    my_full_name = "Shehu Ibrahim Muhammad"
-    hng_id = "HNG-05056"
-    language = "Python"
-    email = "profshehu49@gmail.com"
+fullname = "Shehu Ibrahim Muhammad"
+id = "HNG-05056"
+email = "profshehu94@gmail.com"
+language = "Python"
 
-    print ("Hello World, this is {my_full_name} with HNGi7 ID {hng_id} using {language} for stage 2 task and email {email}")
+
+def task():
+    print("Hello World, this is {} with HNGi7 ID {} using {} for stage 2 task and {} ".format(fullname, id, language, email))
 task()
