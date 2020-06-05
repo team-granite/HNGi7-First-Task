@@ -1,5 +1,5 @@
 
-fullname = "Asogwa Chiuba"
+fullname = "Asogwa Chi-uba"
 id = " HNG-02288"
 language = "Python"
 email = "ishiuba488@gmail.com"
