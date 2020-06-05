@@ -5,4 +5,4 @@ info = "Hello World, this is Collins Wilson with HNGi7 ID HNG-04747 using Python
 email = "wilsoncollins44@yahoo.com"
 
 
-print("{} and {}".format(info,email))
+print("{} and {}".format({info},{email}))
