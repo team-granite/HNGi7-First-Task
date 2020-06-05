@@ -2,7 +2,7 @@
 
 //storing result string in a variable
 
-let output = 'Hello World, this is Busari Sherif with HNG ID HNG-03098 using JavaScript for stage 2 task and busari.sherif.o@gmail.com';
+let output = 'Hello World, this is Busari Sherif with HNGi7 ID HNG-03098 using JavaScript for stage 2 task and busari.sherif.o@gmail.com';
 
 //printing result
 console.log(output);
