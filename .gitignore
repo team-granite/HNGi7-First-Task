@@ -2,3 +2,9 @@
 .DS_Store
 
 **/tempCodeRunnerFile*
+
+.vscode/*
+.vscode
+
+debug.log
+

@@ -1,15 +1,12 @@
-//declearation of variables
-var hngdetails{
+//The output command
+let output = "Hello World, this is Muhammad Abdullahi with HNGi7 ID HNG-00178 using JavaScript for stage 2 task and codedprogrammer00@gmail.com";
+
+//declearing a function for the output
+function printOutScript(){
 	
-	fullName: "Muhammad Abdullahi",
-	id: "HNG-00178",
-	language: "JavaScript",
-	email: "codedprogrammer00@gmail.com",
+	console.log(output);
 
-};
+}
 
-//sending output
-var output = 'Hello World, this is ${hngdetails.fullName} with HNGi7 ID ${hngdetails.id} using ${hngdetails.language} for stage 2 task and ${hngdetails.email}';
-
-//display output
-console.log(output);
+//Calling out the function to print
+printOutScript();
