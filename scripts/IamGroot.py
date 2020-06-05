@@ -5,6 +5,6 @@ data = {'Name': "Habeeb Olokoto",
     'email': 'olokotoh@gmail.com'}
 
 def result():
-    output = ('Hello world, this is {} with HNG-ID {} using {} for stage 2 task. {}'.format(data['Name'],data['ID'],data['language'],data['email']))
+    output = ('Hello World, this is {} with HNGi7 ID {} using {} for stage 2 task and {}'.format(data['Name'],data['ID'],data['language'],data['email']))
     print(output)
 result()

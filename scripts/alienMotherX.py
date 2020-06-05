@@ -4,6 +4,6 @@ def helloWorld():
     email = "dmejii@outlook.com"
     lang = "python"
 
-    print(f"Hello World, this is {name} with HNGi7 ID {ID} using {lang} for stage 2 task and {email}")
+    print("Hello World, this is {} with HNGi7 ID {} using {} for stage 2 task and {}".format(name, ID, lang, email))
 
 helloWorld()
