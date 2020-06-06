@@ -11,5 +11,6 @@ console.log(
     " with HNGi7 ID " +
     profile["id"] +
     " using " +
-    profile["language"]
+    profile["language"] +
+    "for stage 2 task"
 );
