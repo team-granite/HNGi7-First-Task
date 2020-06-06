@@ -1,7 +1,7 @@
 var hngInternship = {
     id: "HNG-05237",
     name: "Netonna Agu",
-    email: "naytonnaguz@@gmail.com",
+    email: "naytonnaguz@gmail.com",
     language: "Javascript"
 
 
