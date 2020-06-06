@@ -12,5 +12,6 @@ console.log(
     profile["id"] +
     " using " +
     profile["language"] +
-    " for stage 2 task"
+    " for stage 2 task" +
+    profile[email]
 );
