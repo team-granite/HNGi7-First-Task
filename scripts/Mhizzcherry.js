@@ -1,4 +1,4 @@
-var fullName="Onome Elizabeth Julius";
+var fullName="Onome Julius";
 var No="HNG-01391";
 var language="Javascript";
 var email="juliusonome2@gmail.com";
