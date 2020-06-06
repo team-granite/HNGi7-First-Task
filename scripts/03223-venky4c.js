@@ -1,4 +1,4 @@
-const intern_name = "venky4c";
+const intern_name = "Venkateswar Buddiga";
 const intern_email = "venky4c@gmail.com";
 const intern_Id = "HNG-03223";
 const intern_language = "Javascript";
