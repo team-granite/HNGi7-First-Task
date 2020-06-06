@@ -1,1 +1,8 @@
-console.log("Hello World, this is Kayode Abiola with HNGi7 ID HNG-04127 using JavaScript for stage 2 task");
+const details = { 
+fullName: "Kayode Abiola",
+hngId: "HNG-04127",
+language: "JavaScript",
+eMail: "kayodeabiola1@gmail.com"
+}; 
+
+console.log('Hello World, this is ' + details["fullName"] + ' with HNGi7 ID ' + details["hngId"] + ' using ' + details["language"] + ' for stage 2 task and ' + details["eMail"]);
