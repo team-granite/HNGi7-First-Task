@@ -13,7 +13,7 @@ let cl = console.log;
 //Output statement
 const showText = () => {
 
-    cl(`Hello World, this is ${myDetails.fullName} with HNGi7 ID ${myDetails.internId} using ${myDetails.language} for stage 2 task  and my email${myDetails.email}`);
+    cl(`Hello World, this is ${myDetails.fullName} with HNGi7 ID ${myDetails.internId} using ${myDetails.language} for stage 2 task and ${myDetails.email}`);
 };
 
 showText();
