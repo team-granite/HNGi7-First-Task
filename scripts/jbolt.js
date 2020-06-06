@@ -1,10 +1,12 @@
+  const profile = {
+  firstName: 'Julian',
+  lastName: 'Bolt',
+  hngId: 'HNG-03574',
+  language: 'JavaScript',
+  email: 'infinixbolt@gmail.com'
+}
 
-var person = {
-  firstName: "Julian Bolt",
-  Hngid: "HNG 03574",
-  language: "JavaScript",
-  email: "infinixbolt@gmail.com"
-};
 
-console.log("Hello World, this is " + person.firstName + " with HNGi7 ID " + person.Hngid + " using " + person.language + " for stage 2 task" + " and " + person.email );
+const showMessage = `Hello World, this is ${profile.firstName} ${profile.lastName} with HNGi7 ID ${profile.hngId} using ${profile.language} for stage 2 task and ${profile.email}.`;
 
+console.log(showMessage);       
