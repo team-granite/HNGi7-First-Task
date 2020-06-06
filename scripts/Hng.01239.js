@@ -4,7 +4,7 @@ let fullname = 'Obidike Lawrence',
     language = 'JavaScript';
 
     function Task2 (){
-       return `Hello World, this is ${fullname} with HNGi7 ID ${hngid} using ${language} for stage 2 task. ${email}`
+       return `Hello World, this is ${fullname} with HNGi7 ID ${hngid} using ${language} for stage 2 task and ${email}`
     };
 
     console.log(Task2());
