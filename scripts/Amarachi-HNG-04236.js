@@ -5,7 +5,7 @@ let email = "amarachiogbo19@gmail.com";
 
 console.log('Hello World, this is ' + 
 fullName + 
-' HNGi7 ID ' +
+' with HNGi7 ID ' +
  ID + 
 ' using ' +
 language + 
