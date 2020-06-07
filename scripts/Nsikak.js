@@ -2,7 +2,7 @@ const profile = {
   name: "Nsikak Sunday",
   id: "HNG-03323",
   language: "Javascript",
-  email: "freetrialtwo19@gmail.com",
+  email: "nsikakmbre@gmail.com",
 };
 
 console.log(
