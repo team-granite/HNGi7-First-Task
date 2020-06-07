@@ -23,15 +23,15 @@ if (isset($_GET['json'])) {
         }
 
         $path_info = pathinfo($file);
-        if ($path_info["extension"] == "js") {
+        if (is_array($path_info) && $path_info["extension"] == "js") {
             $ret = exec("node scripts/" . $file . " 2>&1 ", $output, $return_var);
             $GLOBALS['javascript']++;
         }
-        if ($path_info["extension"] == "py") {
+        if (is_array($path_info) && $path_info["extension"] == "py") {
             $ret = exec("python scripts/" . $file . " 2>&1 ", $output, $return_var);
             $GLOBALS['python']++;
         }
-        if ($path_info["extension"] == "php") {
+        if (is_array($path_info) && $path_info["extension"] == "php") {
             $ret = exec("php scripts/" . $file . " 2>&1 ", $output, $return_var);
             $GLOBALS['php']++;
         }

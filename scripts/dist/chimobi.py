@@ -1,1 +1,0 @@
-print("Hello World, this is Chimobi Okengwu with HNGi7 ID HNG-02501 using Python for stage 2 task and chimobi.okengwu01@gmail.com")
