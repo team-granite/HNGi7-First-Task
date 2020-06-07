@@ -109,7 +109,7 @@ if (isset($_GET['json'])) {
         }
     }
 
-    $json = json_encode($json);
+    $json = json_encode($json, JSON_PRETTY_PRINT);
     echo $json;
 } else {
 ?>
