@@ -3,7 +3,7 @@
 $name = "Yusuf Abdulrahman";
 $hng_id = "HNG-06182";
 $language = "PHP";
-$email = "abulrahmanyusuf125@gmail.com";
+$email = "abdulrahmanyusuf125@gmail.com";
 
 function show_info(){ 
 	global $name, $hng_id, $language, $email;

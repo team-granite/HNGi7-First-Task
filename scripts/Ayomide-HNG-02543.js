@@ -5,7 +5,7 @@ let language = "Javascript"
 let email = "ayakinbo@gmail.com"
 
 //fullInformation variable
-let myFullInfo = `Hello World, this is ${nameInfo} with HNGi7 ID ${hngId} using ${language} for stage 2 taks and ${email}`
+let myFullInfo = `Hello World, this is ${nameInfo} with HNGi7 ID ${hngId} using ${language} for stage 2 task and ${email}`
 
 
 //logging output
